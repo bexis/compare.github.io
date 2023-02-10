@@ -111,6 +111,7 @@
 		});
 		const data = await response.json();
 
+		datasets_result.set(data)
 		return data;
 	}
 
