@@ -5,11 +5,13 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
-		<link rel="modulepreload" href="./_app/immutable/start-b39d3dbe.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-e00079fe.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-8229e69a.js">
-		<link rel="modulepreload" href="./_app/immutable/components/layout.svelte-bd9b5fa0.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_page.svelte-c382a04c.js">
+		<link href="./_app/immutable/assets/_page-8513cc67.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/start-26f4fd45.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-182d32f6.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-06a950c3.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-b56a7874.js">
+		<link rel="modulepreload" href="./_app/immutable/components/layout.svelte-77854d82.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_page.svelte-4f06c42e.js">
 		<link rel="modulepreload" href="./_app/immutable/modules/pages/_page.js-dc85b7cd.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_page-da46b06b.js">
 	</head>
@@ -18,12 +20,14 @@
 
 
 <h1>test</h1>
-<main><div>Xpath: <input value="Metadata/methods/methodsType/studyDesign/studyDesignType/detailedDescriptionOfStudyDesign/">
-		VersionID_1: <input value="9547">
-		VersionID_2: <input value="9836">
-		Token: <input value="">
-		URL: <input value="https://www.bexis.uni-jena.de">
-		<button>Show Diff</button></div>
+<main><div>
+		<button>Show Diff</button>
+		<button>fetch_datasets</button>
+		<button>Add Dataset Id</button>
+		<button>Fetch Original Schema</button></div>
+
+	
+
 
 	
 	<br><br>
@@ -31,17 +35,25 @@
 	<br><br>
 	
 
-	<pre id="display"></pre></main>
+	<pre id="display"></pre>
+	<article></article></main>
 
 
-		<script type="module" data-sveltekit-hydrate="bkm8vv">
-			import { start } from "./_app/immutable/start-b39d3dbe.js";
+
+
+
+
+
+
+
+		<script type="module" data-sveltekit-hydrate="1xo2mka">
+			import { start } from "./_app/immutable/start-26f4fd45.js";
 
 			start({
+				assets: "",
 				env: {},
-				paths: {"assets":"","base":""},
-				target: document.querySelector('[data-sveltekit-hydrate="bkm8vv"]').parentNode,
-				version: "1674394418014",
+				target: document.querySelector('[data-sveltekit-hydrate="1xo2mka"]').parentNode,
+				version: "1676027235745",
 				hydrate: {
 					node_ids: [0, 2],
 					data: [null,null],
