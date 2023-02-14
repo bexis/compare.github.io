@@ -16,10 +16,9 @@
 		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang-50f5df9c.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/store-c8ee3a9e.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/stores-654bc0df.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/compare_datasets/_page.svelte-81bf1947.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.es6-e3d92ab8.js">
-		<link rel="modulepreload" href="./_app/immutable/modules/pages/compare_datasets/_page.js-94291217.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/_page-2a9d3cfa.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_page.svelte-7143c29a.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/_page.js-dc85b7cd.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_page-90a7f2f4.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
   if (localStorage.getItem("storeLightSwitch") === "true" || !("storeLightSwitch" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.classList.add("dark");
   } else {
@@ -79,7 +78,7 @@
 
 <div>
 	
-	<button title="Tile" class="app-rail-tile unstyled grid place-content-center place-items-center w-full aspect-square space-y-1.5 cursor-pointer bg-primary-hover-token  ">
+	<button title="Tile" class="app-rail-tile unstyled grid place-content-center place-items-center w-full aspect-square space-y-1.5 cursor-pointer bg-primary-hover-token bg-primary-active-token ">
 		<div class="app-rail-tile-icon "><i class="fa-solid fa-code-compare text-2xl"></i></div>
 		
 		<div class="app-rail-tile-label font-bold text-xs text-center ">Compare</div></button></div>
@@ -97,25 +96,9 @@
 	<div class="app-bar-trail "></div></div>
 
 			<section class="p-4 pb-20 space-y-4 overflow-y-auto">
-						<div id="settings" class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">Settings</div>
-						
-						<nav class="list-nav"><ul><li><a href="/settings" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Settings<!-- HTML_TAG_END --></span>
-											</a>
-									</li>
-							</ul></nav>
-						
-						<hr class="!my-6 opacity-50">
 						<div id="compare" class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">Compare</div>
 						
 						<nav class="list-nav"><ul><li><a href="/compare_datasets" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Datasets<!-- HTML_TAG_END --></span>
-											</a>
-									</li>
-							</ul></nav>
-						
-						<hr class="!my-6 opacity-50">
-						<div id="check" class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">Check</div>
-						
-						<nav class="list-nav"><ul><li><a href="/check" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Check<!-- HTML_TAG_END --></span>
 											</a>
 									</li>
 							</ul></nav>
@@ -134,31 +117,15 @@
 	
 
 	
-	<main class="p-4"><h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Compare Datasets &amp; Versions</h2>
-	<div class="width-max"><div class="grid justify-items-end pr-8"><div><button class="btn bg-primary-500 rounded-md "  title="Dataset Ids and Versions are cached for performance reasons. Refresh if Ids are missing">Refresh Cache</button>
-				<button class="btn bg-primary-500 rounded-md "  title="Add Datasets to compare. 1st dataset is the reference for comparison.">Add Datasets</button></div></div>
+	<main class="p-4"><h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Welcome!</h2>
 
-		<p class="pt-8 pb-8">Selection of versions only has an effect starting from version v2.17. Before the latest version is used.</p>
-			
-		
-
-		
-
-		</div>
-	<style>table {
-			border-spacing: 0;
-			border-top: 1px solid black;
-			border-left: 1px solid black;
-		}
-		th,
-		td {
-			border-bottom: 1px solid black;
-			border-right: 1px solid black;
-			padding: 0.5rem;
-		}
-		.table tbody td {
-			white-space: break-spaces;
-		}</style></main>
+    <p>This tool is under development.</p>
+    <br>
+    <p>The aim is to provide useful tools for data curator based on existing BEXIS2 APIs. Note If you do not login only public datasets will be returned!</p>
+    <br>
+    <p>To start please add your Settings.</p>
+    <br>
+    <a href="/settings" class="btn bg-primary-500 rounded-md text-white" data-sveltekit-preload-data="hover">Settings</a></main>
 	</main>
 
 			
@@ -171,16 +138,16 @@
 	</div>
 
 
-		<script type="module" data-sveltekit-hydrate="1iyt0uy">
+		<script type="module" data-sveltekit-hydrate="1odl6a9">
 			import { start } from "./_app/immutable/start-bd0650af.js";
 
 			start({
 				assets: "",
 				env: {},
-				target: document.querySelector('[data-sveltekit-hydrate="1iyt0uy"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="1odl6a9"]').parentNode,
 				version: "1676392809517",
 				hydrate: {
-					node_ids: [0, 5],
+					node_ids: [0, 2],
 					data: [null,null],
 					form: null,
 					error: null
