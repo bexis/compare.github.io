@@ -104,6 +104,15 @@
 	}
 </script>
 
+
+<main class="p-4">
+    <h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Check fields across all datasets!</h2>
+
+	<p>Coming soon ;-)</p>
+
+</main>
+
+<!--
 <h1>test</h1>
 <main>
 	<div>
@@ -142,3 +151,4 @@
 
 	<pre id="display" />
 </main>
+-->

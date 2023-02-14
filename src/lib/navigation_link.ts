@@ -13,9 +13,9 @@ export const menuNavLinks: any = [
 		id: 'compare',
 		title: 'Compare',
 		list: [
-			{ href: '/compare', label: 'Versions', keywords: '' },
-			{ href: '/compare', label: 'Datasets', keywords: '' },
-			{ href: '/compare', label: 'Fields', keywords: '' }
+		//	{ href: '/compare', label: 'Versions', keywords: '' },
+			{ href: '/compare_datasets', label: 'Datasets', keywords: '' },
+		//	{ href: '/compare', label: 'Fields', keywords: '' }
 		]
 	},
 
@@ -24,7 +24,7 @@ export const menuNavLinks: any = [
 	{
 		id: 'check',
 		title: 'Check',
-		list: [{ href: '/check', label: 'Installation', keywords: 'start, install, setup' }]
+		list: [{ href: '/check', label: 'Check', keywords: 'start, install, setup' }]
 	}
 
 	// Tailwind ---
