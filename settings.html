@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<script src="https://kit.fontawesome.com/76b174a5e9.js" crossorigin="anonymous"></script>
+		<meta http-equiv="content-security-policy" content="">
+		<link href="./_app/immutable/assets/_layout-27121c8f.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/ProgressBar-05e4960c.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/start-41479788.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-9002fc2e.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-45bbe4f1.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index-70a04200.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-dd87f3b1.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang-50f5df9c.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/store-c8ee3a9e.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/stores-654bc0df.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/settings/_page.svelte-b1be64d3.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/settings/_page.js-94291217.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_page-da46b06b.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
+  if (localStorage.getItem("storeLightSwitch") === "true" || !("storeLightSwitch" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+} setColorScheme();</script><!-- HTML_TAG_END --><!-- HEAD_svelte-1b2q2h6_END -->
+	</head>
+	<body>
+		<div style="display: contents" class="h-full overflow-hidden">
+
+
+<div id="appShell" class="w-full h-full flex flex-col overflow-hidden " data-testid="app-shell">
+	<header id="shell-header" class="flex-none z-10">
+		<div class="app-bar flex flex-col space-y-4 bg-surface-100-800-token  space-y-4 p-4  " data-testid="app-bar" role="toolbar" aria-label="" aria-labelledby="">
+	<div class="app-bar-row-main grid items-center grid-cols-[auto_1fr_auto] gap-4 ">
+		<div class="app-bar-slot-lead flex-none flex justify-between items-center "><div><h3 class="text-secondary-700 dark:text-white font-bold text-2xl dark:font">Curation Support Tool
+			</h3>
+			<br>
+			<h5 class="text-secondary-700 dark:text-white font-bold text-2xl dark:font"><em>v0.1beta</em></h5></div></div>
+		
+		<div class="app-bar-slot-default flex-auto "><h3 class="text-red-500 text-center">BEXIS2 Instance not set!
+            <a href="/settings" class="btn bg-primary-500 rounded-md text-white" data-sveltekit-preload-data="hover">Set</a></h3>
+    </div>
+		
+		<div class="app-bar-slot-trail flex-none flex items-center space-x-4 "><h3></h3>
+        <a href="/settings" class="btn bg-primary-500 rounded-md" data-sveltekit-preload-data="hover">Login</a>
+        
+
+
+
+
+
+<div class="lightswitch inline-block bg-surface-200-700-token ring-[1px] ring-surface-300-600-token ring-inset w-12 h-6 rounded-full cursor-pointer transition-all duration-[100ms] " role="switch" aria-label="Light Switch" title="Toggle Dark Mode" tabindex="0">
+	<div class="lightswitch-thumb bg-white dark:bg-black fill-white dark:fill-black w-6 h-6 flex justify-center items-center rounded-full shadow-lg transition-all duration-[100ms] scale-90 translate-x-0">
+			<svg class="lightswitch-icon fill-white block w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg></div></div>
+
+
+    </div></div>
+	
+	</div>
+	</header>
+
+	
+	<div class="flex-auto w-full h-full flex overflow-hidden">
+		<aside id="sidebar-left" class="flex-none overflow-x-hidden overflow-y-auto flex-none overflow-x-hidden overflow-y-auto bg-surface-50-900-token lg:w-auto"><div class="grid grid-cols-[auto_1fr] h-full bg-surface-50-900-token border-r border-surface-500/30 hidden lg:grid w-[360px] overflow-hidden ">
+
+<div class="app-rail grid grid-rows-[auto_1fr_auto] overflow-y-auto bg-transparent border-r border-surface-500/30 w-[70px] h-full gap-0 ">
+	<div class="app-bar-lead ">
+
+<div>
+	
+	<button title="Tile" class="app-rail-tile unstyled grid place-content-center place-items-center w-full aspect-square space-y-1.5 cursor-pointer bg-primary-hover-token bg-primary-active-token ">
+		<div class="app-rail-tile-icon "><i class="fa-solid fa-screwdriver-wrench text-2xl"></i></div>
+		
+		<div class="app-rail-tile-label font-bold text-xs text-center ">Settings</div></button></div>
+					
+
+<div>
+	
+	<button title="Tile" class="app-rail-tile unstyled grid place-content-center place-items-center w-full aspect-square space-y-1.5 cursor-pointer bg-primary-hover-token  ">
+		<div class="app-rail-tile-icon "><i class="fa-solid fa-code-compare text-2xl"></i></div>
+		
+		<div class="app-rail-tile-label font-bold text-xs text-center ">Compare</div></button></div>
+					
+
+<div>
+	
+	<button title="Tile" class="app-rail-tile unstyled grid place-content-center place-items-center w-full aspect-square space-y-1.5 cursor-pointer bg-primary-hover-token  ">
+		<div class="app-rail-tile-icon "><i class="fa-solid fa-list-check text-2xl"></i></div>
+		
+		<div class="app-rail-tile-label font-bold text-xs text-center ">check</div></button></div></div>
+	
+	<div class="app-bar-default "></div>
+	
+	<div class="app-bar-trail "></div></div>
+
+			<section class="p-4 pb-20 space-y-4 overflow-y-auto">
+						<div id="settings" class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">Settings</div>
+						
+						<nav class="list-nav"><ul><li><a href="/settings" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Settings<!-- HTML_TAG_END --></span>
+											</a>
+									</li>
+							</ul></nav>
+						
+						</section></div>
+	</aside>
+
+		
+		<div id="page" class=" flex-1 overflow-x-hidden overflow-y-auto flex flex-col">
+			
+
+			
+			<main id="page-content" class="flex-auto ">
+	
+	
+	
+
+	
+	<main class="p-4"><label class="input-label w-[380px]"><span>BEXIS2 Instance URL (e.g. https://www.bexis.uni-jena.de)</span><br>
+            <div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md w-[500px]"><input class="w-96" type="text" id="name" required value="">
+            <button class="bg-primary-500">Set</button></div></label>
+<br><br>
+        
+
+
+
+		<label class="input-label"><div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md w-[500px]"><input type="text" placeholder="Username" id="name" minlength="2" required value="">
+				<input type="password" placeholder="Password" id="password_compare" minlength="2" required value="">
+				<button class="bg-primary-500">Login</button></div></label></main>
+	</main>
+
+			
+			</div>
+
+		
+		</div>
+
+	
+	</div>
+
+
+		<script type="module" data-sveltekit-hydrate="jtwdci">
+			import { start } from "./_app/immutable/start-41479788.js";
+
+			start({
+				assets: "",
+				env: {},
+				target: document.querySelector('[data-sveltekit-hydrate="jtwdci"]').parentNode,
+				version: "1676391045370",
+				hydrate: {
+					node_ids: [0, 6],
+					data: [null,null],
+					form: null,
+					error: null
+				}
+			});
+		</script>
+	</div>
+	</body>
+</html>
