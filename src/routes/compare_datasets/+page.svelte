@@ -1,11 +1,7 @@
 <script>
 	import { diffChars } from 'diff';
 	import { onMount } from 'svelte';
-<<<<<<< HEAD
 	import { datasets_result, table_content, url, token, api_version} from '../../store/store';
-=======
-	import { datasets_result, table_content, url, token, api_version} from '../store/store.js';
->>>>>>> 4b307058fea22471d0f0224f2607dba6098a5d9f
 	import ShowDiff from '$lib/components/ShowDiff.svelte';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
 	import { createTable, Subscribe, Render, createRender } from 'svelte-headless-table';
