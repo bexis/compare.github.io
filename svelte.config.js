@@ -1,4 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
+import preprocess from "svelte-preprocess";
+import path from 'path';
 
 export default {
 	kit: {
@@ -15,7 +17,11 @@ export default {
 			//base: process.env.NODE_ENV === 'production' ? '/planthub' : ''
 			base: process.env.NODE_ENV === 'production' ? '' : ''
 		},
-
+		alias: {
+			$docs: path.resolve('./src/docs')
+		},
+		// Consult https://github.com/sveltejs/svelte-preprocess
+	// for more information about preprocessors
 
 		// Build throws error for all links pointing to the backend. Therefor we need to exclude for checking the link during build.
 		prerender: {
@@ -32,5 +38,11 @@ export default {
 				console.warn(`${status} ${path}${referrer ? ` (${referenceType} from ${referrer})` : ''}`);
 			}
 		}
-	}
+	},
+	preprocess: [
+		preprocess({
+			postcss: true,
+		}),
+	],
+
 };
