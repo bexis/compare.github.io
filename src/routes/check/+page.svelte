@@ -6,7 +6,7 @@
 	// @todo: read dataset ids & versions from list
 	let ds_version_ids_endpoint = 'https://www.bexis.uni-jena.de/api/Dataset';
 
-	fetch_datasets(); // @todo: allow to change base url (instance API) default always https://www.bexis.uni-jena.de/
+	//fetch_datasets(); // @todo: allow to change base url (instance API) default always https://www.bexis.uni-jena.de/
 
 	async function fetch_datasets() {
 		const response = await fetch(ds_version_ids_endpoint, {

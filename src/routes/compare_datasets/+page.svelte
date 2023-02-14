@@ -333,8 +333,9 @@
 		rows = viewModel.rows;
 		tableBodyAttrs = viewModel.tableBodyAttrs;
 	}
-
-
+	let count = 0;
+    const reset = () => {count = 0; return "";}
+	const increment = () => {count++; return count;}
 </script>
 
 
@@ -376,8 +377,9 @@
 								bind:value={cur_version_ids[i]}
 							>
 								{#each ds_test[cur_dataset_ids[i]]['Versions'] as version_id}
-									<option class="bg-surface-500">{version_id['Id']}</option>
+									<option class="bg-surface-500" value={version_id['Id']}> {increment()} ({version_id['Id']})</option>
 								{/each}
+								{reset()}
 							</select>
 						{/if}
 						<button class="variant-filled-secondary" on:click={() => delete_dataset(i)}
