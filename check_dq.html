@@ -8,6 +8,7 @@
 		<meta http-equiv="content-security-policy" content="">
 		<link href="./_app/immutable/assets/_layout-d2467c38.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/ProgressBar-05e4960c.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/_page-db39d53e.css" rel="stylesheet">
 		<link rel="modulepreload" href="./_app/immutable/start-a6312706.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index-7b46d763.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-4e1a2a72.js">
@@ -16,12 +17,11 @@
 		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang-01c00cff.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/store-057c543e.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/stores-6d96dd53.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/compare_datasets/_page.svelte-83312977.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.es6-e3d92ab8.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressRadial-13a73751.js">
+		<link rel="modulepreload" href="./_app/immutable/components/pages/check_dq/_page.svelte-a5a5cc2e.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/utils-21f4f64d.js">
-		<link rel="modulepreload" href="./_app/immutable/modules/pages/compare_datasets/_page.js-94291217.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/_page-e94d8ac7.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
+		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressRadial-13a73751.js">
+		<link rel="modulepreload" href="./_app/immutable/modules/pages/check_dq/_page.js-94291217.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/_page-da46b06b.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
   if (localStorage.getItem("storeLightSwitch") === "true" || !("storeLightSwitch" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.classList.add("dark");
   } else {
@@ -134,33 +134,25 @@
 	
 
 	
-	<main class="p-4"><h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Compare Datasets &amp; Versions</h2>
-	<div class="width-max"><div class="grid justify-items-end pr-8"><div><button class="btn bg-primary-500 rounded-md "  title="Dataset Ids and Versions are cached for performance reasons. Refresh if Ids are missing">Refresh Cache</button>
-				<button class="btn bg-primary-500 rounded-md "  title="Add Datasets to compare. 1st dataset is the reference for comparison.">Add Datasets</button></div></div>
-
-		<p class="pt-8 pb-8">Selection of versions only has an effect starting from version v2.17. Before the latest
-				version is used.
-			</p>
-			
-		
-
-		
-
+	<main class="p-4"><h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Data Quality</h2>
+	<div><label class="input-label w-[50%]" for="dq"><div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md"><select class="select variant-form-material w-40" id="dq"></select>
+				<button class="bg-primary-500">Show DQ</button></div></label>
 		</div>
-	<style>table {
-			border-spacing: 0;
-			border-top: 1px solid black;
-			border-left: 1px solid black;
-		}
-		th,
-		td {
-			border-bottom: 1px solid black;
-			border-right: 1px solid black;
-			padding: 0.5rem;
-		}
-		.table tbody td {
-			white-space: break-spaces;
-		}</style></main>
+
+	
+	
+		<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">1. Duplicate Check</h3>
+		<div id="duplicates"></div>
+		<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">2. Missing Value Check</h3>
+		<div class="dashbord svelte-18n3w6y"><div class="vollstContainer svelte-18n3w6y"><div id="pie" class="svelte-18n3w6y"></div>
+				<div id="bar" class="svelte-18n3w6y"></div>
+				<div id="affectedVar" class="svelte-18n3w6y"></div></div>
+		<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">3. Distribution &amp; Count of Unique Values (Data type: number)</h3>
+			<div id="scatter" class="svelte-18n3w6y"></div>
+			<div id="boxplot" class="svelte-18n3w6y"></div>
+			<div id="dupTable" class="svelte-18n3w6y"></div></div>
+
+</main>
 	</main>
 
 			
@@ -173,16 +165,16 @@
 	</div>
 
 
-		<script type="module" data-sveltekit-hydrate="8fe8wj">
+		<script type="module" data-sveltekit-hydrate="1piz12k">
 			import { start } from "./_app/immutable/start-a6312706.js";
 
 			start({
 				assets: "",
 				env: {},
-				target: document.querySelector('[data-sveltekit-hydrate="8fe8wj"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="1piz12k"]').parentNode,
 				version: "1676587861635",
 				hydrate: {
-					node_ids: [0, 6],
+					node_ids: [0, 4],
 					data: [null,null],
 					form: null,
 					error: null
