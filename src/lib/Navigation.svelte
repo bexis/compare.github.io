@@ -1,9 +1,5 @@
 <script lang="ts">
-	import {
-		AppRail,
-		AppRailTile,
-		drawerStore
-	} from '@skeletonlabs/skeleton';
+	import { AppRail, AppRailTile, drawerStore } from '@skeletonlabs/skeleton';
 	import { writable, type Writable } from 'svelte/store';
 	import { page } from '$app/stores';
 
@@ -41,55 +37,53 @@
 		$storeCurrentUrl?.includes(href) ? 'bg-primary-active-token' : '';
 </script>
 
-
-
 <div
-			class="grid grid-cols-[auto_1fr] h-full bg-surface-50-900-token border-r border-surface-500/30 hidden lg:grid w-[360px] overflow-hidden "
-		>
-			<AppRail
-				selected={storeCategory}
-				background="bg-transparent"
-				border="border-r border-surface-500/30"
-				width="w-[70px]"
+	class="grid grid-cols-[auto_1fr] h-full bg-surface-50-900-token border-r border-surface-500/30 hidden lg:grid w-[360px] overflow-hidden "
+>
+	<AppRail
+		selected={storeCategory}
+		background="bg-transparent"
+		border="border-r border-surface-500/30"
+		width="w-[70px]"
+	>
+		<svelte:fragment slot="lead">
+			<AppRailTile label="Settings" title="Tile" value={'settings'} on:click={onListItemClick}
+				><i class="fa-solid fa-screwdriver-wrench text-2xl" /></AppRailTile
 			>
-				<svelte:fragment slot="lead">
-					<AppRailTile label="Settings" title="Tile" value={'settings'} on:click={onListItemClick}
-						><i class="fa-solid fa-screwdriver-wrench text-2xl" /></AppRailTile
-					>
-					<AppRailTile label="Compare" title="Tile" value={'compare'} on:click={onListItemClick}
-						><i class="fa-solid fa-code-compare text-2xl" /></AppRailTile
-					>
-					<AppRailTile label="check" title="Tile" value={'check'} on:click={onListItemClick}
-						><i class="fa-solid fa-list-check text-2xl" /></AppRailTile
-					>
-				</svelte:fragment>
+			<AppRailTile label="Compare" title="Tile" value={'compare'} on:click={onListItemClick}
+				><i class="fa-solid fa-code-compare text-2xl" /></AppRailTile
+			>
+			<AppRailTile label="check" title="Tile" value={'check'} on:click={onListItemClick}
+				><i class="fa-solid fa-list-check text-2xl" /></AppRailTile
+			>
+		</svelte:fragment>
 
-				<svelte:fragment slot="trail" />
-			</AppRail>
+		<svelte:fragment slot="trail" />
+	</AppRail>
 
-			<section class="p-4 pb-20 space-y-4 overflow-y-auto">
-				{#each filteredMenuNavLinks as { id, title, list }, i}
-					{#if list.length > 0}
-						<!-- Title -->
-						<div {id} class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">
-							{title}
-						</div>
-						<!-- Navigation List -->
-						<nav class="list-nav">
-							<ul>
-								{#each list as { href, label, badge }}
-									<li on:click={onListItemClick} on:keypress>
-										<a {href} class={classesActive(href)} data-sveltekit-preload-data="hover">
-											<span class="flex-auto">{@html label}</span>
-											{#if badge}<span class="badge variant-filled-secondary">{badge}</span>{/if}
-										</a>
-									</li>
-								{/each}
-							</ul>
-						</nav>
-						<!-- Divider -->
-						{#if i + 1 < filteredMenuNavLinks.length}<hr class="!my-6 opacity-50" />{/if}
-					{/if}
-				{/each}
-			</section>
-		</div>
+	<section class="p-4 pb-20 space-y-4 overflow-y-auto">
+		{#each filteredMenuNavLinks as { id, title, list }, i}
+			{#if list.length > 0}
+				<!-- Title -->
+				<div {id} class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">
+					{title}
+				</div>
+				<!-- Navigation List -->
+				<nav class="list-nav">
+					<ul>
+						{#each list as { href, label, badge }}
+							<li on:click={onListItemClick} on:keypress>
+								<a {href} class={classesActive(href)} data-sveltekit-preload-data="hover">
+									<span class="flex-auto">{@html label}</span>
+									{#if badge}<span class="badge variant-filled-secondary">{badge}</span>{/if}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</nav>
+				<!-- Divider -->
+				{#if i + 1 < filteredMenuNavLinks.length}<hr class="!my-6 opacity-50" />{/if}
+			{/if}
+		{/each}
+	</section>
+</div>

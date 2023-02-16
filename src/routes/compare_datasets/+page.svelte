@@ -1,13 +1,12 @@
 <script>
 	import { diffChars } from 'diff';
 	import { onMount } from 'svelte';
-	import { datasets_result, table_content, url, token, api_version} from '../../store/store';
+	import { datasets_result, table_content, url, token, api_version } from '../../store/store';
 	import ShowDiff from '$lib/components/ShowDiff.svelte';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
 	import { createTable, Subscribe, Render, createRender } from 'svelte-headless-table';
 	import { get_version, fetch_datasets } from '$lib/utils/utils';
 	import { restructure_all_metadata } from './compare_datasets';
-
 
 	let headersList = {
 		Accept: 'application/json',
@@ -16,7 +15,6 @@
 	};
 
 	let bodyContent = '';
-
 
 	let loading = false;
 	$: props = { value: 50, max: 100, step: 10 };
@@ -53,15 +51,13 @@
 			loading = false;
 		}
 
-		const version = await get_version(headersList, $url.toString())
+		const version = await get_version(headersList, $url.toString());
 		api_version.set(version);
 	});
-
 
 	let endpoint = $url + '/api/MetadataStatistic';
 	let endpoint_metadata = $url + '/api/Metadata/';
 	let ds_version_ids_endpoint = $url + '/api/Dataset';
-
 
 	//this is the id of a dataset
 	//	let id = 5764;
@@ -121,11 +117,11 @@
 		return data;
 	}
 
-	async function update_cache(){
+	async function update_cache() {
 		loading = true;
-			const result = await fetch_datasets(ds_version_ids_endpoint);
-			datasets_result.set(result);
-			loading = false;
+		const result = await fetch_datasets(ds_version_ids_endpoint);
+		datasets_result.set(result);
+		loading = false;
 	}
 
 	/**
@@ -134,12 +130,12 @@
 	 */
 	async function fetch_metadata(dataset_id, version_id) {
 		console.log('Fetching metadata for dataset_id: ', dataset_id, version_id);
-		let url_metadata_api = "";
-		if ($api_version == "2.16"){
-			url_metadata_api = endpoint_metadata + '/' + dataset_id
+		let url_metadata_api = '';
+		if ($api_version == '2.16') {
+			url_metadata_api = endpoint_metadata + '/' + dataset_id;
 		}
-		if ($api_version == "2.17"){
-			url_metadata_api = endpoint_metadata + '/' + dataset_id + '/' + version_id
+		if ($api_version == '2.17') {
+			url_metadata_api = endpoint_metadata + '/' + dataset_id + '/' + version_id;
 		}
 
 		const response = await fetch(url_metadata_api, {
@@ -151,10 +147,6 @@
 
 		return data;
 	}
-
-
-
-
 
 	/**
 	 * @param {any[]} content
@@ -310,7 +302,7 @@
 				accessor: 'section'
 			})
 		]);
-		let i = 1
+		let i = 1;
 		for (var row_index in tablecontent[0]) {
 			if (row_index !== 'section') {
 				columns.push(
@@ -324,7 +316,7 @@
 							})
 					})
 				);
-				i= i+1;
+				i = i + 1;
 			}
 		}
 		viewModel = table1.createViewModel(columns);
@@ -334,28 +326,43 @@
 		tableBodyAttrs = viewModel.tableBodyAttrs;
 	}
 	let count = 0;
-    const reset = () => {count = 0; return "";}
-	const increment = () => {count++; return count;}
+	const reset = () => {
+		count = 0;
+		return '';
+	};
+	const increment = () => {
+		count++;
+		return count;
+	};
 </script>
-
 
 <main class="p-4">
 	<h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Compare Datasets & Versions</h2>
 	<div class="width-max">
-
 		<div class="grid justify-items-end pr-8">
 			<div>
-				<button class=" btn bg-primary-500 rounded-md " on:click={update_cache} disabled={loading} title="Dataset Ids and Versions are cached for performance reasons. Refresh if Ids are missing"
+				<button
+					class=" btn bg-primary-500 rounded-md "
+					on:click={update_cache}
+					disabled={loading}
+					title="Dataset Ids and Versions are cached for performance reasons. Refresh if Ids are missing"
 					>Refresh Cache</button
 				>
-				<button class=" btn bg-primary-500 rounded-md " on:click={add_dataset_id} disabled={loading} title="Add Datasets to compare. 1st dataset is the reference for comparison."
+				<button
+					class=" btn bg-primary-500 rounded-md "
+					on:click={add_dataset_id}
+					disabled={loading}
+					title="Add Datasets to compare. 1st dataset is the reference for comparison."
 					>Add Datasets</button
 				>
 			</div>
 		</div>
 
 		{#if ds_test}
-			<p class="pt-8 pb-8">Selection of versions only has an effect starting from version v2.17. Before the latest version is used.</p>
+			<p class="pt-8 pb-8">
+				Selection of versions only has an effect starting from version v2.17. Before the latest
+				version is used.
+			</p>
 			{#each cur_dataset_ids as d_id, i}
 				<label class="input-label w-80" for={'ds_select_' + { i }}
 					><span>Dataset {i + 1}:</span>
@@ -377,7 +384,9 @@
 								bind:value={cur_version_ids[i]}
 							>
 								{#each ds_test[cur_dataset_ids[i]]['Versions'] as version_id}
-									<option class="bg-surface-500" value={version_id['Id']}> {increment()} ({version_id['Id']})</option>
+									<option class="bg-surface-500" value={version_id['Id']}>
+										{increment()} ({version_id['Id']})</option
+									>
 								{/each}
 								{reset()}
 							</select>
@@ -390,7 +399,6 @@
 
 				<br />
 			{/each}
-
 		{/if}
 		{#if cur_dataset_ids.length >= 2}
 			<div class="grid justify-items-end pr-8">

@@ -5,17 +5,15 @@ export const menuNavLinks: any = [
 	{
 		id: 'settings',
 		title: 'Settings',
-		list: [
-			{ href: '/settings', label: 'Settings', keywords: '' },
-		]
+		list: [{ href: '/settings', label: 'Settings', keywords: '' }]
 	},
 	{
 		id: 'compare',
 		title: 'Compare',
 		list: [
-		//	{ href: '/compare', label: 'Versions', keywords: '' },
-			{ href: '/compare_datasets', label: 'Datasets', keywords: '' },
-		//	{ href: '/compare', label: 'Fields', keywords: '' }
+			//	{ href: '/compare', label: 'Versions', keywords: '' },
+			{ href: '/compare_datasets', label: 'Datasets', keywords: '' }
+			//	{ href: '/compare', label: 'Fields', keywords: '' }
 		]
 	},
 

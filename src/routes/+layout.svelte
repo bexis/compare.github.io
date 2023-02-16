@@ -1,13 +1,10 @@
 <script lang="ts">
-	import {
-		AppShell,
-	} from '@skeletonlabs/skeleton';
+	import { AppShell } from '@skeletonlabs/skeleton';
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../app.postcss';
 	import Header from '$lib/Header.svelte';
-	import Navigation from '$lib/Navigation.svelte'
-
+	import Navigation from '$lib/Navigation.svelte';
 </script>
 
 <AppShell
@@ -26,7 +23,7 @@
 	</svelte:fragment>
 
 	<!-- Page Content-->
-	<slot  />
+	<slot />
 	<!-- Page Footer
 	<svelte:fragment slot="pageFooter">
 		<DocsFooter />
