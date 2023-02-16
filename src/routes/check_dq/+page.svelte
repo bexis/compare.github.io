@@ -708,7 +708,8 @@
 		};
 		//	d.allVariablen.forEach((v) => {
 		//if the type of the vriable is string, there is no need for the visualizaion
-		if (v.DataTypeName === 'string') {
+		const types = ['String','DateTime'];
+		if (types.includes(v.DataTypeSystemType)) {
 			return;
 		}
 		//it is not possible to show all variables in one visualization because the range of values can be very different, therefore only one variable needs to be visualized.
@@ -721,9 +722,15 @@
 
 		//this is list of the values in the variable as points of x-y-coordinate system
 		const points = [];
-		const max = Math.max(...v.uniqueValues.map((o) => o.count));
-		const min = Math.min(...v.uniqueValues.map((o) => o.count));
-		const without_max = v.uniqueValues.filter(function (obj) {
+		const without_missing = v.uniqueValues.filter(function (obj) {
+			console.log(v.missingValues[0].placeholder)
+			return obj.var != v.missingValues[0].placeholder;
+		});
+
+
+		const max = Math.max(...without_missing.map((o) => o.count));
+		const min = Math.min(...without_missing.map((o) => o.count));
+		const without_max = without_missing.filter(function (obj) {
 			return obj.count !== max;
 		});
 		const max_new = Math.max(...without_max.map((o) => o.count));
@@ -734,7 +741,7 @@
 			let intval = max / 50;
 			if (max < 50){intval = 1;}
 			text = ': max count ' + max;
-			v.uniqueValues.forEach((uv, i) => {
+			without_missing.forEach((uv, i) => {
 				let count = 0;
 				if (max < 50){
 					count = uv.count}
