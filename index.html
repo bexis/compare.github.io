@@ -2,23 +2,24 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="./favicon.png" />
+		<link rel="icon" href="/compare.github.io/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<script src="https://kit.fontawesome.com/76b174a5e9.js" crossorigin="anonymous"></script>
 		<meta http-equiv="content-security-policy" content="">
-		<link href="./_app/immutable/assets/_layout-d2467c38.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/ProgressBar-05e4960c.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/start-fae79c82.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-7b46d763.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons-4e1a2a72.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-58b6802c.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-4c2b13e0.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang-01c00cff.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/store-057c543e.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/stores-6d96dd53.js">
-		<link rel="modulepreload" href="./_app/immutable/components/pages/_page.svelte-39979bdb.js">
-		<link rel="modulepreload" href="./_app/immutable/modules/pages/_page.js-dc85b7cd.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/_page-90a7f2f4.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
+		<link href="/compare.github.io/_app/immutable/assets/_layout-d2467c38.css" rel="stylesheet">
+		<link href="/compare.github.io/_app/immutable/assets/ProgressBar-05e4960c.css" rel="stylesheet">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/start-9fba7827.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/index-7b46d763.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/singletons-ca8c4e85.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/index-58b6802c.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/paths-e1095e45.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/components/pages/_layout.svelte-272dbbe9.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang-01c00cff.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/store-057c543e.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/stores-cafaacf3.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/components/pages/_page.svelte-e12a2ccb.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/modules/pages/_page.js-dc85b7cd.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/_page-da46b06b.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
   if (localStorage.getItem("storeLightSwitch") === "true" || !("storeLightSwitch" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.classList.add("dark");
   } else {
@@ -40,11 +41,11 @@
 			<h5 class="text-secondary-700 dark:text-white font-bold text-2xl dark:font"><em>v0.1beta</em></h5></div></div>
 		
 		<div class="app-bar-slot-default flex-auto "><h3 class="text-red-500 text-center">BEXIS2 Instance not set!
-				<a href="/settings" class="btn bg-primary-500 rounded-md text-white" data-sveltekit-preload-data="hover">Set</a></h3>
+				<a href="/compare.github.io/settings" class="btn bg-primary-500 rounded-md text-white" data-sveltekit-preload-data="hover">Set</a></h3>
 	</div>
 		
 		<div class="app-bar-slot-trail flex-none flex items-center space-x-4 "><h3></h3>
-		<a href="/settings" class="btn bg-primary-500 rounded-md" data-sveltekit-preload-data="hover">Login</a>
+		<a href="/compare.github.io/settings" class="btn bg-primary-500 rounded-md" data-sveltekit-preload-data="hover">Login</a>
 		
 
 
@@ -76,7 +77,7 @@
 
 <div>
 	
-	<button title="Tile" class="app-rail-tile unstyled grid place-content-center place-items-center w-full aspect-square space-y-1.5 cursor-pointer bg-primary-hover-token bg-primary-active-token ">
+	<button title="Tile" class="app-rail-tile unstyled grid place-content-center place-items-center w-full aspect-square space-y-1.5 cursor-pointer bg-primary-hover-token  ">
 		<div class="app-rail-tile-icon "><i class="fa-solid fa-code-compare text-2xl"></i></div>
 		
 		<div class="app-rail-tile-label font-bold text-xs text-center ">Compare</div></button></div>
@@ -94,9 +95,25 @@
 	<div class="app-bar-trail "></div></div>
 
 	<section class="p-4 pb-20 space-y-4 overflow-y-auto">
+				<div id="settings" class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">Settings</div>
+				
+				<nav class="list-nav"><ul><li><a href="/compare.github.io/settings" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Settings<!-- HTML_TAG_END --></span>
+									</a>
+							</li>
+					</ul></nav>
+				
+				<hr class="!my-6 opacity-50">
 				<div id="compare" class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">Compare</div>
 				
-				<nav class="list-nav"><ul><li><a href="/compare_datasets" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Datasets<!-- HTML_TAG_END --></span>
+				<nav class="list-nav"><ul><li><a href="/compare.github.io/compare_datasets" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Datasets<!-- HTML_TAG_END --></span>
+									</a>
+							</li>
+					</ul></nav>
+				
+				<hr class="!my-6 opacity-50">
+				<div id="check" class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">Check</div>
+				
+				<nav class="list-nav"><ul><li><a href="/compare.github.io/check_dq" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Check Data Quality<!-- HTML_TAG_END --></span>
 									</a>
 							</li>
 					</ul></nav>
@@ -125,7 +142,7 @@
 	<br>
 	<p>To start please add your Settings.</p>
 	<br>
-	<a href="/settings" class="btn bg-primary-500 rounded-md text-white" data-sveltekit-preload-data="hover">Settings</a></main>
+	<a href="/compare.github.io/settings" class="btn bg-primary-500 rounded-md text-white" data-sveltekit-preload-data="hover">Settings</a></main>
 	</main>
 
 			
@@ -138,14 +155,14 @@
 	</div>
 
 
-		<script type="module" data-sveltekit-hydrate="14rvptd">
-			import { start } from "./_app/immutable/start-fae79c82.js";
+		<script type="module" data-sveltekit-hydrate="125hogl">
+			import { start } from "/compare.github.io/_app/immutable/start-9fba7827.js";
 
 			start({
-				assets: "",
+				assets: "/compare.github.io",
 				env: {},
-				target: document.querySelector('[data-sveltekit-hydrate="14rvptd"]').parentNode,
-				version: "1676632940239",
+				target: document.querySelector('[data-sveltekit-hydrate="125hogl"]').parentNode,
+				version: "1676633722945",
 				hydrate: {
 					node_ids: [0, 2],
 					data: [null,null],
