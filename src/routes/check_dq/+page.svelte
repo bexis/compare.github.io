@@ -13,7 +13,6 @@
 	import { BoxPlotController } from '@sgratzl/chartjs-chart-boxplot';
 	import { get_version, fetch_datasets } from '$lib/utils/utils';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
-	import Select from 'svelte-select';
 	import {
 		show_dublicates,
 		show_unique_value_distribution,
@@ -262,8 +261,7 @@
 					{/each}
 				</select>
 				<input class="w-96" type="text" id="name" bind:value={id} disabled={loading} />
-				<button class="btn bg-primary-500 rounded-md" on:click={showVis} disabled={loading}
-					>Show DQ</button
+				<button class="btn bg-primary-500 rounded-md" on:click={showVis} disabled={loading}>Show DQ</button
 				>
 			</div>
 		</label>
