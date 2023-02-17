@@ -243,12 +243,16 @@
 			});
 		});
 	};
+
+	const onKeyPress = (/** @type {{ charCode: number; }} */ e) => {
+		if (e.charCode === 13) showVis();
+	};
 </script>
 
 <main class="p-4">
 	<h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Data Quality</h2>
 	<div>
-		<label class="input-label w-[30%]" for="dq">
+		<label class="input-label w-[80%]" for="dq">
 			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md">
 				<select
 					class="select variant-form-material w-40"
@@ -260,8 +264,16 @@
 						<option class="bg-surface-500" value={dataset}>{dataset}</option>
 					{/each}
 				</select>
-				<input class="w-96" type="text" id="name" bind:value={id} disabled={loading} />
-				<button class="btn bg-primary-500 rounded-md" on:click={showVis} disabled={loading}>Show DQ</button
+				<input
+					class="w-96"
+					type="text"
+					id="name"
+					bind:value={id}
+					disabled={loading}
+					on:keypress={onKeyPress}
+				/>
+				<button class="btn bg-primary-500 rounded-md w-96" on:click={showVis} disabled={loading}
+					>Show DQ</button
 				>
 			</div>
 		</label>
