@@ -1,18 +1,19 @@
 // Navigation Links & Sitemap
+import { base } from '$app/paths';
 
 export const menuNavLinks: any = [
 	// Docs ---
 	{
 		id: 'settings',
 		title: 'Settings',
-		list: [{ href: '/settings', label: 'Settings', keywords: '' }]
+		list: [{ href: base + '/settings', label: 'Settings', keywords: '' }]
 	},
 	{
 		id: 'compare',
 		title: 'Compare',
 		list: [
 			//	{ href: '/compare', label: 'Versions', keywords: '' },
-			{ href: '/compare_datasets', label: 'Datasets', keywords: '' }
+			{ href: base + '/compare_datasets', label: 'Datasets', keywords: '' }
 			//	{ href: '/compare', label: 'Fields', keywords: '' }
 		]
 	},
@@ -22,7 +23,7 @@ export const menuNavLinks: any = [
 	{
 		id: 'check',
 		title: 'Check',
-		list: [{ href: '/check_dq', label: 'Check Data Quality', keywords: '' }]
+		list: [{ href: base + '/check_dq', label: 'Check Data Quality', keywords: '' }]
 	}
 
 	// Tailwind ---

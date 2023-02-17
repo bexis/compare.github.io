@@ -1,4 +1,5 @@
 <script>
+    import { base } from '$app/paths';
 </script>
 
 <main class="p-4">
@@ -14,7 +15,7 @@
 	<p>To start please add your Settings.</p>
 	<br />
 	<a
-		href="/settings"
+		href="{base + "/settings"}"
 		class="btn bg-primary-500 rounded-md text-white"
 		data-sveltekit-preload-data="hover">Settings</a
 	>
