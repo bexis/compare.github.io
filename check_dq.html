@@ -6,23 +6,23 @@
 		<meta name="viewport" content="width=device-width" />
 		<script src="https://kit.fontawesome.com/76b174a5e9.js" crossorigin="anonymous"></script>
 		<meta http-equiv="content-security-policy" content="">
-		<link href="/compare.github.io/_app/immutable/assets/_layout-33b0eadd.css" rel="stylesheet">
+		<link href="/compare.github.io/_app/immutable/assets/_layout-c1fc450b.css" rel="stylesheet">
 		<link href="/compare.github.io/_app/immutable/assets/ProgressBar-05e4960c.css" rel="stylesheet">
-		<link href="/compare.github.io/_app/immutable/assets/_page-db39d53e.css" rel="stylesheet">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/start-924b71e7.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/index-284b2de7.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/singletons-8096e939.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/index-8aaf0abe.js">
+		<link href="/compare.github.io/_app/immutable/assets/_page-a675dd15.css" rel="stylesheet">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/start-0fb89b5d.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/index-5be25f07.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/singletons-cf570ef2.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/index-e0892334.js">
 		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/paths-e1095e45.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/components/pages/_layout.svelte-4097a829.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang-a1e76327.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/store-8e912dfc.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/stores-a4e28920.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/components/pages/check_dq/_page.svelte-42c54448.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/components/pages/_layout.svelte-e7331794.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang-eda54fb4.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/store-5f7ba014.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/stores-2cc2ab79.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/components/pages/check_dq/_page.svelte-48e3cdeb.js">
 		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/utils-21f4f64d.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/ProgressRadial-33fb3c8b.js">
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/ProgressRadial-55cb67d7.js">
 		<link rel="modulepreload" href="/compare.github.io/_app/immutable/modules/pages/check_dq/_page.js-94291217.js">
-		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/_page-2a9d3cfa.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
+		<link rel="modulepreload" href="/compare.github.io/_app/immutable/chunks/_page-fca24c55.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
   if (localStorage.getItem("storeLightSwitch") === "true" || !("storeLightSwitch" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.classList.add("dark");
   } else {
@@ -41,7 +41,7 @@
 		<div class="app-bar-slot-lead flex-none flex justify-between items-center "><div><h3 class="text-secondary-700 dark:text-white font-bold text-2xl dark:font">Curation Support Tool
 			</h3>
 			<br>
-			<h5 class="text-secondary-700 dark:text-white font-bold text-2xl dark:font"><em>v0.1beta</em></h5></div></div>
+			<h5 class="text-secondary-700 dark:text-white font-bold text-2xl dark:font"><em>v0.3beta</em></h5></div></div>
 		
 		<div class="app-bar-slot-default flex-auto "><h3 class="text-red-500 text-center">BEXIS2 Instance not set!
 				<a href="/compare.github.io/settings" class="btn bg-primary-500 rounded-md text-white" data-sveltekit-preload-data="hover">Set</a></h3>
@@ -116,7 +116,7 @@
 				<hr class="!my-6 opacity-50">
 				<div id="check" class="text-primary-700 dark:text-primary-500 font-bold uppercase px-4">Check</div>
 				
-				<nav class="list-nav"><ul><li><a href="/compare.github.io/check_dq" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Check Data Quality<!-- HTML_TAG_END --></span>
+				<nav class="list-nav"><ul><li><a href="/compare.github.io/check_dq" class="" data-sveltekit-preload-data="hover"><span class="flex-auto"><!-- HTML_TAG_START -->Data Quality<!-- HTML_TAG_END --></span>
 									</a>
 							</li>
 					</ul></nav>
@@ -138,23 +138,53 @@
 	<main class="p-4"><h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Data Quality</h2>
 	<div><label class="input-label w-[80%]" for="dq"><div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md"><select class="select variant-form-material w-40" id="dq" ></select>
 				<input class="w-96" type="text" id="name"  value="31300">
-				<button class="btn bg-primary-500 rounded-md w-96" >Show DQ</button></div></label>
-
-		</div>
+				<button class="btn bg-primary-500 rounded-md w-96" >Show DQ</button></div></label></div>
 
 	
 	
 	<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">1. Duplicate Check</h3>
+	
+	
+	
 	<div id="duplicates"></div>
-	<div id="dupTable" class="svelte-18n3w6y"></div>
+	<div id="dupTable" class="svelte-1s2y2c"></div>
 	<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">2. Missing Value Check</h3>
-	<div class="dashbord svelte-18n3w6y"><div class="vollstContainer svelte-18n3w6y"><div id="pie" class="svelte-18n3w6y"></div>
-			<div id="bar" class="svelte-18n3w6y"></div>
-			<div id="affectedVar" class="svelte-18n3w6y"></div></div>
-		<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">3. Distribution &amp; Count of Unique Values (Data type: number)
+	<div class="dashbord svelte-1s2y2c"><div class="vollstContainer svelte-1s2y2c"><div id="pie" class="svelte-1s2y2c"></div>
+			<div id="bar" class="svelte-1s2y2c"></div>
+			<div id="affectedVar" class="svelte-1s2y2c"></div></div>
+		<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">3. Distribution &amp; Count of Unique Values
 		</h3>
-		<div id="scatter" class="svelte-18n3w6y"></div>
-		<div id="boxplot" class="svelte-18n3w6y"></div></div>
+
+		<div class="tab-group space-y-4 overflow-x-auto hide-scrollbars " data-testid="tab-group">
+	<div class="tab-list flex justify-start border-b border-surface-400-500-token " role="tablist" aria-labelledby="">
+			<label class="tab text-center cursor-pointer transition-colors duration-100 flex-none px-4 py-2 rounded-tl-container-token rounded-tr-container-token border-b-2 border-surface-900-50-token " role="tab" aria-controls="" aria-selected="true" tabindex="0" data-testid="tab">
+	<div class="h-0 w-0 overflow-hidden"><input type="radio" name="Bubble Plot (number)" value="0" tabindex="-1" checked></div>
+	
+	<div class="tab-interface ">
+		<div class="tab-label">Bubble Plot (#)<sup class="badge variant-filled-primary">0</sup></div></div></label>
+			<label class="tab text-center cursor-pointer transition-colors duration-100 flex-none px-4 py-2 rounded-tl-container-token rounded-tr-container-token hover:variant-soft " role="tab" aria-controls="" aria-selected="false" tabindex="0" data-testid="tab">
+	<div class="h-0 w-0 overflow-hidden"><input type="radio" name="Box-Whisker-Plot (number)" value="1" tabindex="-1"></div>
+	
+	<div class="tab-interface ">
+		<div class="tab-label">Box-Whisker-Plot (#)<sup class="badge variant-filled-primary">0</sup></div></div></label>
+			<label class="tab text-center cursor-pointer transition-colors duration-100 flex-none px-4 py-2 rounded-tl-container-token rounded-tr-container-token hover:variant-soft " role="tab" aria-controls="" aria-selected="false" tabindex="0" data-testid="tab">
+	<div class="h-0 w-0 overflow-hidden"><input type="radio" name="Bar Plot (text)" value="2" tabindex="-1"></div>
+	
+	<div class="tab-interface ">
+		<div class="tab-label">Bar Plot (text)<sup class="badge variant-filled-primary">0</sup></div></div></label>
+			<label class="tab text-center cursor-pointer transition-colors duration-100 flex-none px-4 py-2 rounded-tl-container-token rounded-tr-container-token hover:variant-soft " role="tab" aria-controls="" aria-selected="false" tabindex="0" data-testid="tab">
+	<div class="h-0 w-0 overflow-hidden"><input type="radio" name="Date" value="3" tabindex="-1"></div>
+	
+	<div class="tab-interface ">
+		<div class="tab-label">Date<sup class="badge variant-filled-primary">0</sup></div></div></label>
+			</div>
+	
+	<div class="tab-panel  " role="tabpanel" aria-labelledby="">
+				<div  id="scatter" class="svelte-1s2y2c"></div>
+				<div hidden id="boxplot" class="svelte-1s2y2c"></div>
+				<div hidden id="bar_cat" class="svelte-1s2y2c"></div>
+				<div hidden><p class="pt-2">Sorry, no visualization available.</p></div>
+			</div></div></div>
 </main>
 	</main>
 
@@ -168,14 +198,14 @@
 	</div>
 
 
-		<script type="module" data-sveltekit-hydrate="r0wl71">
-			import { start } from "/compare.github.io/_app/immutable/start-924b71e7.js";
+		<script type="module" data-sveltekit-hydrate="17wwjkn">
+			import { start } from "/compare.github.io/_app/immutable/start-0fb89b5d.js";
 
 			start({
 				assets: "/compare.github.io",
 				env: {},
-				target: document.querySelector('[data-sveltekit-hydrate="r0wl71"]').parentNode,
-				version: "1676651979567",
+				target: document.querySelector('[data-sveltekit-hydrate="17wwjkn"]').parentNode,
+				version: "1676668652027",
 				hydrate: {
 					node_ids: [0, 4],
 					data: [null,null],
