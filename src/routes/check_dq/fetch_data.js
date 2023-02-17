@@ -14,8 +14,12 @@ export async function getData(endpoint, id, token) {
 		method: 'GET',
 		headers: headersList
 	});
-    // workaround for: != 23 = Bearer token not exist.
-	if (response.status == 200 && Number(response.headers.get('content-length')) > 0 && Number(response.headers.get('content-length')) != 23) {
+	// workaround for: != 23 = Bearer token not exist.
+	if (
+		response.status == 200 &&
+		Number(response.headers.get('content-length')) > 0 &&
+		Number(response.headers.get('content-length')) != 23
+	) {
 		try {
 			return response.json();
 		} catch {
