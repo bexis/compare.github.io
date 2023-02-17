@@ -21,63 +21,6 @@
 		completeness_bar
 	} from '../check_dq/draw_charts';
 	import { getData } from '../check_dq/fetch_data';
-	import {
-		Chart,
-		ArcElement,
-		LineElement,
-		BarElement,
-		PointElement,
-		BarController,
-		BubbleController,
-		DoughnutController,
-		LineController,
-		PieController,
-		PolarAreaController,
-		RadarController,
-		ScatterController,
-		CategoryScale,
-		LinearScale,
-		LogarithmicScale,
-		RadialLinearScale,
-		TimeScale,
-		TimeSeriesScale,
-		Decimation,
-		Filler,
-		Legend,
-		Title,
-		Tooltip
-	} from 'chart.js/dist/chart.mjs';
-
-	Chart.register(
-		ArcElement,
-		LineElement,
-		BarElement,
-		PointElement,
-		BarController,
-		BubbleController,
-		DoughnutController,
-		LineController,
-		PieController,
-		PolarAreaController,
-		RadarController,
-		ScatterController,
-		CategoryScale,
-		LinearScale,
-		LogarithmicScale,
-		RadialLinearScale,
-		TimeScale,
-		TimeSeriesScale,
-		Decimation,
-		Filler,
-		Legend,
-		Title,
-		Tooltip,
-		ChartDataLabels,
-		BoxPlotController
-	);
-	Chart.defaults.color = 'white';
-
-	let bodyContent = '';
 
 	let loading = false;
 	$: props = { value: 50, max: 100, step: 10 };
