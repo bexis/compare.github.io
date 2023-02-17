@@ -265,7 +265,7 @@
 	</div>
 
 	{#if error == true}
-		<p>An error occurred. Possible reason: Dataset does not contain structured primary data.</p>
+		<p class="text-red-500">An error occurred.</p><blockquote>Dataset does not contain structured primary data or the dataset is not public and you are not logged in.</blockquote>
 	{/if}
 	{#if loading == true}
 		<div class="card variant-glass p-4 grid grid-cols-2 gap-4 text-center">
