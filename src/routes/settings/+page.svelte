@@ -1,7 +1,14 @@
 <script>
 	import { get_version } from '$lib/utils/utils.js';
 	import { onMount } from 'svelte';
-	import { token, username, url, datasets_result, api_version } from '../../store/store.js';
+	import {
+		token,
+		username,
+		url,
+		datasets_result,
+		api_version,
+		structured_datasets
+	} from '../../store/store.js';
 
 	let url_ = '';
 
@@ -28,7 +35,7 @@
 		let headersList = {
 			Accept: '*/*',
 			Authorization: 'Basic ' + btoa(username_ + ':' + password_),
-			'content-type': 'application/json',
+			'content-type': 'application/json'
 		};
 
 		let response = await fetch($url + '/api/Token', {
@@ -55,6 +62,7 @@
 	async function setUrl() {
 		url.set(url_);
 		datasets_result.set([]); // unset cached values
+		structured_datasets.set([]);
 		const version = await get_version(headersList, $url.toString());
 		api_version.set(version);
 	}
