@@ -31,18 +31,21 @@ export async function fetch_datasets(ds_version_ids_endpoint) {
 	});
 	const data = await response.json();
 
-	data.sort( compare );
+	data.sort(compare);
 
 	return data;
 }
 
-
-function compare( a, b ) {
-	if ( a.Id < b.Id ){
-	  return -1;
+/**
+ * @param {{ Id: number; }} a
+ * @param {{ Id: number; }} b
+ */
+function compare(a, b) {
+	if (a.Id < b.Id) {
+		return -1;
 	}
-	if ( a.Id > b.Id ){
-	  return 1;
+	if (a.Id > b.Id) {
+		return 1;
 	}
 	return 0;
-  }
+}
