@@ -1,3 +1,11 @@
+/*
+	Everything you need to install and use Chart.js can be found here:
+	https://chartjs-plugin-datalabels.netlify.app
+	https://www.chartjs.org
+
+	Boxplot-Github:
+	https://github.com/sgratzl/chartjs-chart-boxplot
+	*/
 import {
 	Chart,
 	LinearScale,
@@ -103,7 +111,6 @@ export function completeness_pie(d, pieDiv) {
 		}
 	});
 	// @ts-ignore
-	pieDiv.innerHTML = '';
 	pieDiv?.appendChild(pieCanvas);
 }
 
@@ -180,11 +187,15 @@ export function completeness_bar(d, barDiv) {
 	});
 
 	// @ts-ignore
-	barDiv.innerHTML = '';
+	if (barDiv) {
+		barDiv.innerHTML = '';
+	}
 	//get html element of the table that used to show affected variables
 	const div = document.getElementById('affectedVar');
 	// @ts-ignore
-	div.innerHTML = '';
+	if (div) {
+		div.innerHTML = '';
+	}
 	//if there is no affacted variable, then there is no need to create this visualization (the bar)
 	if (d.affectedVariablen.length > 0) {
 		// if there is a lot of affacted variables, then set the height of the bar biger to show it corretly
@@ -418,7 +429,9 @@ export function show_unique_value_distribution(d, v, scatterDiv) {
 	//	});
 	console.log(scatterDiv, 'scatter');
 	// @ts-ignore
-	scatterDiv.innerHTML = '';
+	if (scatterDiv) {
+		scatterDiv.innerHTML = '';
+	}
 	if (scatterData.datasets.length > 0) {
 		new Chart(scatterCanvas.getContext('2d'), {
 			type: 'bubble',
@@ -442,13 +455,15 @@ export function show_dublicates(d) {
 	const dupTable = document.getElementById('dupTable');
 	const duplicates = document.getElementById('duplicates');
 	const dupDiv = document.createElement('div');
-	dupDiv.innerText = 'Duplicates: 0%';
-	// @ts-ignore
-	dupTable.innerHTML = '';
-	// @ts-ignore
-	duplicates.innerHTML = '';
+	//dupDiv.innerText = 'Duplicates: 0%';
+	if (dupTable) {
+		dupTable.innerHTML = '';
+	}
+	if (duplicates) {
+		duplicates.innerHTML = '';
+	}
 	duplicates?.appendChild(dupDiv);
-
+	let dupPerc = 0;
 	//create table of all duplicates as html element
 	if (d.duplicates.length) {
 		const table = document.createElement('table');
@@ -485,18 +500,10 @@ export function show_dublicates(d) {
 		dupTable?.appendChild(table);
 
 		//set percentage of duplicates
-		const dupPerc = ((dupSum / d.countRows) * 100).toFixed(2);
-		dupDiv.innerText = 'Duplicates: ' + dupPerc + '%';
-		//if duplicates more the 10% set color red, else orange
-		// @ts-ignore
-		if (dupPerc > 10) {
-			dupDiv.style.backgroundColor = 'rgb(255, 0, 0, 0.5)';
-			dupDiv.style.borderColor = 'rgb(255, 0, 0)';
-		} else {
-			dupDiv.style.backgroundColor = 'rgb(255, 165, 0, 0.5)';
-			dupDiv.style.borderColor = 'rgb(255, 165, 0)';
-		}
+
+		dupPerc = parseInt(((dupSum / d.countRows) * 100).toFixed(2));
 	}
+	return dupPerc;
 }
 
 /**
@@ -562,7 +569,9 @@ export function boxplot(v, boxplotDiv) {
 	});
 
 	// @ts-ignore
-	boxplotDiv.innerHTML = '';
+	if (boxplotDiv) {
+		boxplotDiv.innerHTML = '';
+	}
 	if (boxplotData.datasets.length > 0) {
 		new Chart(boxplotCanvas.getContext('2d'), {
 			type: 'boxplot',
@@ -588,4 +597,106 @@ export function boxplot(v, boxplotDiv) {
 		});
 		boxplotDiv?.appendChild(boxplotCanvas);
 	}
+}
+
+/**
+ * @param {{ DataTypeSystemType: string; uniqueValues: { var: any; count: any; }[]; VariableName: string; missingValues: { placeholder: any; }[];}} v
+ * @param {HTMLElement | null} barDiv
+ */
+export function bar_cat(v, barDiv) {
+	const barCanvas = document.createElement('canvas');
+
+	//if the type of the vriable is string, there is no need for the visualizaion
+	const types = ['String'];
+	if (!types.includes(v.DataTypeSystemType)) {
+		return;
+	}
+
+	// @ts-ignore
+	//boxplotData.labels.push(v.VariableName);
+	/**
+	 * @type {any[]}
+	 */
+	const data = [];
+	/**
+	 * @type {any[]}
+	 */
+	const label = [];
+	let i = 0;
+
+	/**
+	 * @type {any[]}
+	 */
+	let without_missing = [];
+	if (v.missingValues.length > 0) {
+		without_missing = v.uniqueValues.filter(function (/** @type {{ var: any; }} */ obj) {
+			return obj.var != v.missingValues[0].placeholder;
+		});
+	} else {
+		without_missing = v.uniqueValues;
+	}
+
+	without_missing.sort(compare);
+
+	without_missing.forEach((/** @type {{ var: any; count: any}} */ uv) => {
+		//if the value is not number (null) don't put it in the data for the boxplot, otherwise, it's not gonna working
+
+		if (i < 20) {
+			label.push(uv.var);
+			data.push(uv.count);
+		}
+		i = i + 1;
+	});
+	console.log('bar_cat', data, label);
+	// @ts-ignore
+	let barData = {
+		labels: [],
+		datasets: []
+	};
+	// @ts-ignore
+	barData.labels = label;
+	// @ts-ignore
+	barData.datasets.push({
+		label: v.VariableName + ' (max 20 with most counts)',
+		data: data,
+		borderColor: 'rgb(54, 162, 235)', //border color of the dataset
+		backgroundColor: 'rgb(54, 162, 235, 02)', //background color of the dataset
+		barPercentage: 0.5,
+		barThickness: 6,
+		maxBarThickness: 8,
+		minBarLength: 2
+	});
+
+	// @ts-ignore
+	if (barDiv) {
+		barDiv.innerHTML = '';
+	}
+	if (barData.datasets.length > 0) {
+		new Chart(barCanvas.getContext('2d'), {
+			type: 'bar',
+			data: barData,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				}
+			}
+		});
+		barDiv?.appendChild(barCanvas);
+	}
+}
+
+/**
+ * @param {{ count: number; }} a
+ * @param {{ count: number; }} b
+ */
+function compare(a, b) {
+	if (a.count > b.count) {
+		return -1;
+	}
+	if (a.count < b.count) {
+		return 1;
+	}
+	return 0;
 }

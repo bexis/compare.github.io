@@ -1,24 +1,15 @@
 <script>
-	/*
-	Everything you need to install and use Chart.js can be found here:
-	https://chartjs-plugin-datalabels.netlify.app
-	https://www.chartjs.org
-
-	Boxplot-Github:
-	https://github.com/sgratzl/chartjs-chart-boxplot
-	*/
 	import { url, token, api_version, structured_datasets } from '../../store/store';
 	import { onMount } from 'svelte';
-	import ChartDataLabels from 'chartjs-plugin-datalabels';
-	import { BoxPlotController } from '@sgratzl/chartjs-chart-boxplot';
 	import { get_version, fetch_datasets } from '$lib/utils/utils';
-	import { ProgressRadial } from '@skeletonlabs/skeleton';
+	import { ProgressRadial, Tab, TabGroup } from '@skeletonlabs/skeleton';
 	import {
-		show_dublicates,
+		show_dublicates as show_duplicates,
 		show_unique_value_distribution,
 		boxplot,
 		completeness_pie,
-		completeness_bar
+		completeness_bar,
+		bar_cat
 	} from '../check_dq/draw_charts';
 	import { getData } from '../check_dq/fetch_data';
 
@@ -34,12 +25,7 @@
 	structured_datasets.subscribe((/** @type {string | any[]} */ value) => {
 		ds_struct = value;
 		console.log(ds_struct);
-		// console.log(typeof ds_test);
 	});
-	/**
-	 * @type {string[]}
-	 */
-	$: varibales = [];
 
 	onMount(async () => {
 		structured_datasets.useLocalStorage();
@@ -66,18 +52,19 @@
 	let endpoint_data_quality = '/api/DataQuality/';
 	let endpoint_structured_datasets = '/api/DataStatistic';
 
-	//------------------------------------------------------------------------
-	//host and id are used in to fetch the necessary information using the API calls
-	let host = $url;
 	//this is the id of a dataset
 	/**
 	 * @type {any}
 	 */
 	$: id = 31300; //5764;
 	let showId = 0;
+	/**
+	 * @type {{ count: number; countRows: number; countColumns: number; countData: number; countMv: number; countNull: number; missingValues: any[]; affectedVariablen: any[]; allVariablen: any[]; duplicates: any[]; }}
+	 */
+	let statisticAPIdata;
 
 	//-------------------------------------------------------------------------
-	//In this function a object is created that contains all the necessary information for the visualization of Data quality
+	// Create base object
 	//-------------------------------------------------------------------------
 	const getDQ = async function (/** @type {string | number} */ id) {
 		//countAll represents the number of all cells in a table
@@ -114,56 +101,67 @@
 		//get the variables using an api call and prepare them for the visualization
 		loading = true;
 		error = false;
-		await getData($url + '/' + endpoint_data_statistics, id, $token).then(async (variablen) => {
-			if (variablen == false) {
-				loading = false;
-				error = true;
-			}
-			allVariablen = variablen;
-			countRows = parseInt(variablen[0].count);
-			countColumns = variablen.length;
-			countAll = countRows * countColumns;
-			showId = id;
-			await variablen.forEach((variable) => {
-				const mvs = variable.missingValues;
-				const uvs = variable.uniqueValues;
-				//count empty cells in this variable
-				const nulls = (() => {
-					const obj = uvs.find((x) => x.var === 'NULL' || x.var === null);
-					return obj ? obj.count : 0;
-				})();
-				variable.NULL = nulls;
-				if (nulls) {
-					countNull += nulls;
-					if (affectedVariablen.indexOf(variable) === -1) {
-						affectedVariablen.push(variable);
-					}
+		await getData($url + '/' + endpoint_data_statistics, id, $token.toString()).then(
+			async (variables) => {
+				if (variables == false) {
+					loading = false;
+					error = true;
 				}
+				allVariablen = variables;
+				countRows = parseInt(variables[0].count);
+				countColumns = variables.length;
+				countAll = countRows * countColumns;
+				// @ts-ignore
+				showId = id;
+				await variables.forEach(
+					(
+						/** @type {{ [x: string]: any; missingValues: any; uniqueValues: any; NULL: any; }} */ variable
+					) => {
+						const mvs = variable.missingValues;
+						const uvs = variable.uniqueValues;
+						//count empty cells in this variable
+						const nulls = (() => {
+							const obj = uvs.find(
+								(/** @type {{ var: string | null; }} */ x) => x.var === 'NULL' || x.var === null
+							);
+							return obj ? obj.count : 0;
+						})();
+						variable.NULL = nulls;
+						if (nulls) {
+							countNull += nulls;
+							if (affectedVariablen.indexOf(variable) === -1) {
+								affectedVariablen.push(variable);
+							}
+						}
 
-				//get all missing Values in this variable, count them and add this number to countMv
-				mvs.forEach((mv) => {
-					const name = mv.displayName;
-					const value = mv.placeholder;
-					const count = (() => {
-						const obj = uvs.find((x) => x.var === Number(value));
-						return obj ? obj.count : 0;
-					})();
-					if (count) {
-						countMv += count;
-						variable[name] = count;
-						if (missingValues.indexOf(name) === -1) {
-							missingValues.push(name);
-						}
-						if (affectedVariablen.indexOf(variable) === -1) {
-							affectedVariablen.push(variable);
-						}
+						//get all missing Values in this variable, count them and add this number to countMv
+						mvs.forEach((/** @type {{ displayName: any; placeholder: any; }} */ mv) => {
+							const name = mv.displayName;
+							const value = mv.placeholder;
+							const count = (() => {
+								const obj = uvs.find(
+									(/** @type {{ var: number; }} */ x) => x.var === Number(value)
+								);
+								return obj ? obj.count : 0;
+							})();
+							if (count) {
+								countMv += count;
+								variable[name] = count;
+								if (missingValues.indexOf(name) === -1) {
+									missingValues.push(name);
+								}
+								if (affectedVariablen.indexOf(variable) === -1) {
+									affectedVariablen.push(variable);
+								}
+							}
+						});
 					}
-				});
-			});
-		});
+				);
+			}
+		);
 
 		//get all duplicates using api call
-		await getData($url + '/' + endpoint_data_quality, id, $token).then((dt) => {
+		await getData($url + '/' + endpoint_data_quality, id, $token.toString()).then((dt) => {
 			duplicates = dt.DataTable;
 		});
 		loading = false;
@@ -184,40 +182,38 @@
 	};
 
 	//-------------------------------------------------------------------------
-	//All visualizations are created in the function
+	// Create visualizations
 	//-------------------------------------------------------------------------
+	let duplicate_percent = -1;
 	const showVis = async function () {
-		//get html elements which are used for the visualization
-
 		// remove existing graphs
-		const scatterDiv_temp = document.getElementById('scatter');
-		scatterDiv_temp.innerHTML = '';
-		const pie = document.getElementById('pie');
-		pie.innerHTML = '';
-		const bar = document.getElementById('bar');
-		bar.innerHTML = '';
-		const duplicates = document.getElementById('duplicates');
-		duplicates.innerHTML = '';
-		const boxplotDiv = document.getElementById('boxplot');
-		boxplotDiv.innerHTML = '';
-		const barDiv = document.getElementById('bar');
-		barDiv.innerHTML = '';
+		remove_content('scatter');
+		remove_content('pie');
+		remove_content('bar');
+		remove_content('duplicates');
+		remove_content('boxplot');
+		remove_content('dupTable');
+		remove_content('affectedVar');
+		remove_content('bar_cat');
 
-		//get the object with the id of the dataset to create the visualizations
+		// create charts
 		getDQ(id).then((d) => {
-			//--------------------------- completeness-Pie ------------------------------
+			statisticAPIdata = d;
+
 			const pieDiv = document.getElementById('pie');
 			completeness_pie(d, pieDiv);
-			//--------------------------- completeness-bar ------------------------------
+
 			const barDiv = document.getElementById('bar');
 			completeness_bar(d, barDiv);
-			//------------------------------ duplicates ---------------------------------
-			show_dublicates(d);
-			//---------------------------- oulier-boxplot -------------------------------
 
-			const boxplotDiv_temp = document.getElementById('boxplot');
 			// @ts-ignore
-			boxplotDiv_temp.innerHTML = '';
+			duplicate_percent = show_duplicates(d);
+			console.log('doppelt', duplicate_percent);
+
+			const boxplotDiv = document.getElementById('boxplot');
+			if (boxplotDiv) {
+				boxplotDiv.innerHTML = '';
+			}
 			d.allVariablen.forEach((v) => {
 				const str = '<div id="boxplot_' + v.VariableName + '"></div>';
 				console.log(str);
@@ -227,26 +223,81 @@
 				boxplot(v, boxplotDiv);
 			});
 
-			//------------------------------- scatter ----------------------------------
-			//varibales = d.allVariablen;
-			console.log(d);
-			const scatterDiv_temp = document.getElementById('scatter');
-			// @ts-ignore
-			scatterDiv_temp.innerHTML = '';
-			d.allVariablen.forEach((v) => {
-				const str = '<div id="scatter_' + v.VariableName + '"></div>';
-				console.log(str);
-				const scatterDiv_temp = document.getElementById('scatter');
-				scatterDiv_temp?.insertAdjacentHTML('beforeend', str);
-				const scatterDiv = document.getElementById('scatter_' + v.VariableName);
-				show_unique_value_distribution(d, v, scatterDiv);
-			});
+			bubble_plot();
+
+			category_bar_plot();
 		});
 	};
+	/**
+	 * @type {number}
+	 */
+	let count_number = 0;
+	function bubble_plot() {
+		const d = statisticAPIdata;
+		console.log(d);
+		const scatterDiv_temp = document.getElementById('scatter');
+		// @ts-ignore
+		if (scatterDiv_temp) {
+			scatterDiv_temp.innerHTML = '';
+		}
+		count_number = 0;
+		d.allVariablen.forEach((v) => {
+			const str = '<div id="scatter_' + v.VariableName + '"></div>';
+			console.log(str);
+			const scatterDiv_temp = document.getElementById('scatter');
+			scatterDiv_temp?.insertAdjacentHTML('beforeend', str);
+			const scatterDiv = document.getElementById('scatter_' + v.VariableName);
+			const types = ['String', 'DateTime'];
+			if (!types.includes(v.DataTypeSystemType)) {
+				show_unique_value_distribution(d, v, scatterDiv);
+				count_number++;
+			}
+		});
+	}
+
+	let count_text = 0;
+	let count_date = 0;
+	function category_bar_plot() {
+		const d = statisticAPIdata;
+		const barDiv_temp = document.getElementById('bar_cat');
+
+		if (barDiv_temp) {
+			barDiv_temp.innerHTML = '';
+		}
+		count_text = 0;
+		d.allVariablen.forEach((v) => {
+			const str = '<div id="bar_cat_' + v.VariableName + '"></div>';
+			console.log(str);
+			const barDiv_temp = document.getElementById('bar_cat');
+			barDiv_temp?.insertAdjacentHTML('beforeend', str);
+			const barDiv = document.getElementById('bar_cat_' + v.VariableName);
+
+			if (v.DataTypeSystemType == 'String') {
+				bar_cat(v, barDiv);
+				count_text++;
+			}
+
+			if (v.DataTypeSystemType == 'DateTime') {
+				bar_cat(v, barDiv);
+				count_date++;
+			}
+		});
+	}
+	/**
+	 * @param {string} element
+	 */
+	function remove_content(element) {
+		const div = document.getElementById(element);
+		if (div) {
+			div.innerHTML = '';
+		}
+	}
 
 	const onKeyPress = (/** @type {{ charCode: number; }} */ e) => {
 		if (e.charCode === 13) showVis();
 	};
+
+	let tabsBasic = 0;
 </script>
 
 <main class="p-4">
@@ -277,13 +328,10 @@
 				>
 			</div>
 		</label>
-
-		<!--	Token: <input bind:value={token} /
-		URL: <input bind:value={host} />>-->
 	</div>
 
 	{#if error == true}
-		<p class="text-red-500">An error occurred.</p>
+		<p class="text-red-500 pt-2">An error occurred.</p>
 		<blockquote>
 			Dataset does not contain structured primary data or the dataset is not public and you are not
 			logged in.
@@ -298,6 +346,24 @@
 		</div>
 	{:else}{/if}
 	<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">1. Duplicate Check</h3>
+	{#if duplicate_percent == 0}
+		<aside class="alert variant-ghost-success w-80">
+			<i class="fa-solid fa-circle-check text-2xl" />
+			<h3 class="alert-message">Duplicates: 0%</h3>
+		</aside>
+	{/if}
+	{#if duplicate_percent <= 10 && duplicate_percent != -1}
+		<aside class="alert variant-ghost-warning w-80">
+			<i class="fa-solid fa-circle-exclamation text-2xl" />
+			<h3 class="alert-message">Duplicates: {duplicate_percent}%</h3>
+		</aside>
+	{/if}
+	{#if duplicate_percent > 10}
+		<aside class="alert variant-ghost-error w-80">
+			<i class="fa-solid fa-circle-xmark text-2xl" />
+			<h3 class="alert-message">Duplicates: {duplicate_percent}%</h3>
+		</aside>
+	{/if}
 	<div id="duplicates" />
 	<div id="dupTable" />
 	<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">2. Missing Value Check</h3>
@@ -308,10 +374,33 @@
 			<div id="affectedVar" />
 		</div>
 		<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">
-			3. Distribution & Count of Unique Values (Data type: number)
+			3. Distribution & Count of Unique Values
 		</h3>
-		<div id="scatter" />
-		<div id="boxplot" />
+
+		<TabGroup>
+			<!-- Tabs -->
+			<Tab bind:group={tabsBasic} name="Bubble Plot (number)" value={0}
+				>Bubble Plot (#)<sup class="badge variant-filled-primary">{count_number}</sup></Tab
+			>
+			<Tab bind:group={tabsBasic} name="Box-Whisker-Plot (number)" value={1}
+				>Box-Whisker-Plot (#)<sup class="badge variant-filled-primary">{count_number}</sup></Tab
+			>
+			<Tab bind:group={tabsBasic} name="Bar Plot (text)" value={2}
+				>Bar Plot (text)<sup class="badge variant-filled-primary">{count_text}</sup></Tab
+			>
+			<Tab bind:group={tabsBasic} name="Date" value={3}
+				>Date<sup class="badge variant-filled-primary">{count_date}</sup></Tab
+			>
+			<!-- Panel -->
+			<svelte:fragment slot="panel">
+				<div hidden={tabsBasic !== 0} id="scatter" />
+				<div hidden={tabsBasic !== 1} id="boxplot" />
+				<div hidden={tabsBasic !== 2} id="bar_cat" />
+				<div hidden={tabsBasic !== 3}>
+					<p class="pt-2">Sorry, no visualization available.</p>
+				</div>
+			</svelte:fragment>
+		</TabGroup>
 	</div>
 </main>
 
@@ -367,21 +456,20 @@
 		overflow: auto;
 	}
 
+	#bar_cat {
+		max-height: 20rem;
+		width: 40rem;
+		min-width: 40rem;
+		padding: 1rem;
+		margin: 1rem;
+		overflow: auto;
+	}
+
 	:global(#dupTable > table) {
 		width: 100%;
 	}
 
 	:global(table, th, td) {
 		border: 1px solid black;
-	}
-
-	:global(#duplicates > div) {
-		width: fit-content;
-		padding: 0.5rem;
-		font-size: 2rem;
-		font-weight: bold;
-		border: solid 0.2rem;
-		border-color: rgb(0, 128, 0);
-		background-color: rgb(0, 128, 0, 0.5);
 	}
 </style>

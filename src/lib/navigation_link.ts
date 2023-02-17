@@ -23,7 +23,7 @@ export const menuNavLinks: any = [
 	{
 		id: 'check',
 		title: 'Check',
-		list: [{ href: base + '/check_dq', label: 'Check Data Quality', keywords: '' }]
+		list: [{ href: base + '/check_dq', label: 'Data Quality', keywords: '' }]
 	}
 
 	// Tailwind ---

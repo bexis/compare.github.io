@@ -33,7 +33,7 @@
 			</h3>
 			<br />
 			<h5 class="text-secondary-700 dark:text-white font-bold text-2xl dark:font">
-				<em>v0.1beta</em>
+				<em>v0.3beta</em>
 			</h5>
 		</div>
 	</svelte:fragment>
