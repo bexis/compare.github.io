@@ -27,8 +27,8 @@
 		failed = false;
 		let headersList = {
 			Accept: '*/*',
-			'User-Agent': '*',
-			Authorization: 'Basic ' + btoa(username_ + ':' + password_)
+			Authorization: 'Basic ' + btoa(username_ + ':' + password_),
+			'content-type': 'application/json',
 		};
 
 		let response = await fetch($url + '/api/Token', {
