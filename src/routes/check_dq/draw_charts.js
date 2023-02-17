@@ -1,11 +1,11 @@
-import { Chart, LinearScale, CategoryScale } from 'chart.js/dist/chart.mjs';
+import { Chart, LinearScale, CategoryScale, PieController, BubbleController, BarController, LogarithmicScale, ArcElement, PointElement, BarElement } from 'chart.js/dist/chart.mjs';
 import { BoxPlotController, BoxAndWiskers } from '@sgratzl/chartjs-chart-boxplot';
 
 // @ts-ignore
 Chart.defaults.color = 'white';
 
 // @ts-ignore
-Chart.register(BoxPlotController, BoxAndWiskers, LinearScale, CategoryScale);
+Chart.register(BoxPlotController, BoxAndWiskers, LinearScale, CategoryScale, PieController, BubbleController, BarController, LogarithmicScale, ArcElement, PointElement, BarElement);
 
 
 /**
