@@ -14,7 +14,7 @@ export default {
 		}),
 		paths: {
 			//base: process.env.NODE_ENV === 'production' ? '/planthub' : ''
-			base: process.env.NODE_ENV === 'production' ? '/compare.github.io/' : ''
+			base: process.env.NODE_ENV === 'production' ? '/compare.github.io' : ''
 		},
 		alias: {
 			// $docs: path.resolve('./src/docs')
