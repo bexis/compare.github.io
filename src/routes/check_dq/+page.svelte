@@ -352,7 +352,7 @@
 			<h3 class="alert-message">Duplicates: 0%</h3>
 		</aside>
 	{/if}
-	{#if duplicate_percent <= 10 && duplicate_percent != -1}
+	{#if duplicate_percent <= 10 && duplicate_percent > 0}
 		<aside class="alert variant-ghost-warning w-80">
 			<i class="fa-solid fa-circle-exclamation text-2xl" />
 			<h3 class="alert-message">Duplicates: {duplicate_percent}%</h3>
