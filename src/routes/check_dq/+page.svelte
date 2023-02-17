@@ -7,12 +7,13 @@
 	Boxplot-Github:
 	https://github.com/sgratzl/chartjs-chart-boxplot
 	*/
-	import { datasets_result, table_content, url, token, api_version } from '../../store/store';
+	import { url, token, api_version, structured_datasets } from '../../store/store';
 	import { onMount } from 'svelte';
 	import ChartDataLabels from 'chartjs-plugin-datalabels';
 	import { BoxPlotController } from '@sgratzl/chartjs-chart-boxplot';
 	import { get_version, fetch_datasets } from '$lib/utils/utils';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
+	import Select from 'svelte-select';
 	import {
 		show_dublicates,
 		show_unique_value_distribution,
@@ -30,9 +31,10 @@
 	/**
 	 * @type {any[] | string}
 	 */
-	let ds_test;
-	datasets_result.subscribe((value) => {
-		ds_test = value;
+	let ds_struct;
+	structured_datasets.subscribe((/** @type {string | any[]} */ value) => {
+		ds_struct = value;
+		console.log(ds_struct);
 		// console.log(typeof ds_test);
 	});
 	/**
@@ -41,15 +43,15 @@
 	$: varibales = [];
 
 	onMount(async () => {
-		datasets_result.useLocalStorage();
+		structured_datasets.useLocalStorage();
 		url.useLocalStorage();
 		token.useLocalStorage();
 		api_version.useLocalStorage();
 
-		if (ds_test.length == 0) {
+		if (ds_struct.length == 0) {
 			loading = true;
-			const result = await fetch_datasets($url + ds_version_ids_endpoint);
-			datasets_result.set(result);
+			const result = await fetch_datasets($url + endpoint_structured_datasets);
+			structured_datasets.set(result);
 			loading = false;
 		}
 		let headersList = {
@@ -63,12 +65,15 @@
 
 	let endpoint_data_statistics = '/api/DataStatistic';
 	let endpoint_data_quality = '/api/DataQuality/';
-	let ds_version_ids_endpoint = '/api/Dataset';
+	let endpoint_structured_datasets = '/api/DataStatistic';
 
 	//------------------------------------------------------------------------
 	//host and id are used in to fetch the necessary information using the API calls
 	let host = $url;
 	//this is the id of a dataset
+	/**
+	 * @type {any}
+	 */
 	$: id = 31300; //5764;
 	let showId = 0;
 
@@ -203,10 +208,10 @@
 		getDQ(id).then((d) => {
 			//--------------------------- completeness-Pie ------------------------------
 			const pieDiv = document.getElementById('pie');
-			completeness_pie(d, pieDiv)
+			completeness_pie(d, pieDiv);
 			//--------------------------- completeness-bar ------------------------------
 			const barDiv = document.getElementById('bar');
-			completeness_bar(d, barDiv)
+			completeness_bar(d, barDiv);
 			//------------------------------ duplicates ---------------------------------
 			show_dublicates(d);
 			//---------------------------- oulier-boxplot -------------------------------
@@ -239,33 +244,40 @@
 			});
 		});
 	};
-
 </script>
 
 <main class="p-4">
 	<h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Data Quality</h2>
 	<div>
-		<label class="input-label w-[50%]" for="dq">
+		<label class="input-label w-[30%]" for="dq">
 			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md">
 				<select
 					class="select variant-form-material w-40"
 					id="dq"
 					bind:value={id}
-					on:change={() => showVis}
+					disabled={loading}
 				>
-					{#each ds_test as dataset, i}
-						<option class="bg-surface-500" value={dataset['Id']}>{dataset['Id']}</option>
+					{#each ds_struct as dataset, i}
+						<option class="bg-surface-500" value={dataset}>{dataset}</option>
 					{/each}
 				</select>
-				<button class="bg-primary-500" on:click={showVis}>Show DQ</button>
+				<input class="w-96" type="text" id="name" bind:value={id} disabled={loading} />
+				<button class="btn bg-primary-500 rounded-md" on:click={showVis} disabled={loading}
+					>Show DQ</button
+				>
 			</div>
 		</label>
+
 		<!--	Token: <input bind:value={token} /
 		URL: <input bind:value={host} />>-->
 	</div>
 
 	{#if error == true}
-		<p class="text-red-500">An error occurred.</p><blockquote>Dataset does not contain structured primary data or the dataset is not public and you are not logged in.</blockquote>
+		<p class="text-red-500">An error occurred.</p>
+		<blockquote>
+			Dataset does not contain structured primary data or the dataset is not public and you are not
+			logged in.
+		</blockquote>
 	{/if}
 	{#if loading == true}
 		<div class="card variant-glass p-4 grid grid-cols-2 gap-4 text-center">
@@ -277,6 +289,7 @@
 	{:else}{/if}
 	<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">1. Duplicate Check</h3>
 	<div id="duplicates" />
+	<div id="dupTable" />
 	<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">2. Missing Value Check</h3>
 	<div class="dashbord">
 		<div class="vollstContainer">
@@ -289,7 +302,6 @@
 		</h3>
 		<div id="scatter" />
 		<div id="boxplot" />
-		<div id="dupTable" />
 	</div>
 </main>
 

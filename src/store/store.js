@@ -21,6 +21,7 @@ const createLocalStore = (/** @type {string} */ key, /** @type {any[] | string }
 };
 
 export const datasets_result = createLocalStore('datasets_result', []);
+export const structured_datasets = createLocalStore('structured_datasets', []);
 export const table_content = createLocalStore('table_content', []);
 export const token = createLocalStore('token', '');
 export const username = createLocalStore('username', '');
