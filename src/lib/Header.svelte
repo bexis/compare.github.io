@@ -10,6 +10,7 @@
 
 	import { onMount } from 'svelte';
 	import { token, username, url, api_version } from '../store/store.js';
+    import { base } from '$app/paths';
 
 	onMount(async () => {
 		token.useLocalStorage();
@@ -45,7 +46,7 @@
 			<h3 class="text-red-500 text-center">
 				BEXIS2 Instance not set!
 				<a
-					href="/settings"
+					href="{base + '/settings'}"
 					class="btn bg-primary-500 rounded-md text-white"
 					data-sveltekit-preload-data="hover">Set</a
 				>
@@ -60,7 +61,7 @@
 				<button class="btn bg-primary-500 rounded-md" on:click={logout}>Logout</button>
 			</label>
 		{:else}
-			<a href="/settings" class="btn bg-primary-500 rounded-md" data-sveltekit-preload-data="hover"
+			<a href="{base + '/settings'}" class="btn bg-primary-500 rounded-md" data-sveltekit-preload-data="hover"
 				>Login</a
 			>
 		{/if}
