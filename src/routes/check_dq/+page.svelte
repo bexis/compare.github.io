@@ -63,6 +63,12 @@
 	 */
 	let statisticAPIdata;
 
+	//affectedVariablen is a list of all variables (columns) affected by completeness
+	/**
+	 * @type {any[]}
+	 */
+	$: affectedVariablen = [];
+
 	//-------------------------------------------------------------------------
 	// Create base object
 	//-------------------------------------------------------------------------
@@ -87,11 +93,7 @@
 		 * @type {any[]}
 		 */
 		let allVariablen = [];
-		//affectedVariablen is a list of all variables (columns) affected by completeness
-		/**
-		 * @type {any[]}
-		 */
-		const affectedVariablen = [];
+
 		//missingVAlues is a list of all type of Missing Values
 		/**
 		 * @type {any[]}
@@ -298,6 +300,7 @@
 	};
 
 	let tabsBasic = 0;
+	let tabsMissingValues = 0;
 </script>
 
 <main class="p-4">
@@ -367,41 +370,64 @@
 	<div id="duplicates" />
 	<div id="dupTable" />
 	<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">2. Missing Value Check</h3>
-	<div class="dashbord">
-		<div class="vollstContainer">
-			<div id="pie" />
-			<div id="bar" />
-			<div id="affectedVar" />
-		</div>
-		<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">
-			3. Distribution & Count of Unique Values
-		</h3>
 
-		<TabGroup>
-			<!-- Tabs -->
-			<Tab bind:group={tabsBasic} name="Bubble Plot (number)" value={0}
-				>Bubble Plot (#)<sup class="badge variant-filled-primary">{count_number}</sup></Tab
-			>
-			<Tab bind:group={tabsBasic} name="Box-Whisker-Plot (number)" value={1}
-				>Box-Whisker-Plot (#)<sup class="badge variant-filled-primary">{count_number}</sup></Tab
-			>
-			<Tab bind:group={tabsBasic} name="Bar Plot (text)" value={2}
-				>Bar Plot (text)<sup class="badge variant-filled-primary">{count_text}</sup></Tab
-			>
-			<Tab bind:group={tabsBasic} name="Date" value={3}
-				>Date<sup class="badge variant-filled-primary">{count_date}</sup></Tab
-			>
-			<!-- Panel -->
-			<svelte:fragment slot="panel">
-				<div hidden={tabsBasic !== 0} id="scatter" />
-				<div hidden={tabsBasic !== 1} id="boxplot" />
-				<div hidden={tabsBasic !== 2} id="bar_cat" />
-				<div hidden={tabsBasic !== 3}>
-					<p class="pt-2">Sorry, no visualization available.</p>
+	<TabGroup>
+		<Tab bind:group={tabsMissingValues} name="Graph" value={0}>Graph</Tab>
+		<Tab bind:group={tabsMissingValues} name="Table" value={1}>Table</Tab>
+		<svelte:fragment slot="panel">
+			<div hidden={tabsMissingValues !== 0}>
+				<div class="dashbord">
+					<div class="vollstContainer">
+						<div id="pie" />
+						<div id="bar" />
+						<div id="affectedVar" />
+					</div>
 				</div>
-			</svelte:fragment>
-		</TabGroup>
-	</div>
+			</div>
+			<div hidden={tabsMissingValues !== 1}>
+				{#if affectedVariablen && affectedVariablen.length > 0}
+					<table>
+						<tr><th>Variable Name</th><th>Unit</th><th>Count NA</th><th>Count Null</th></tr>
+						{#each affectedVariablen as variable}
+							<tr
+								><td>{variable.VariableName}</td><td>{variable.Unit}</td><td>{variable.NA}</td><td
+									>{variable.NULL}</td
+								></tr
+							>
+						{/each}
+					</table>
+				{/if}
+			</div>
+		</svelte:fragment>
+	</TabGroup>
+	<h3 class="pt-4 pb-4 text-secondary-700 dark:text-white">
+		3. Distribution & Count of Unique Values
+	</h3>
+
+	<TabGroup>
+		<!-- Tabs -->
+		<Tab bind:group={tabsBasic} name="Bubble Plot (number)" value={0}
+			>Bubble Plot (#)<sup class="badge variant-filled-primary">{count_number}</sup></Tab
+		>
+		<Tab bind:group={tabsBasic} name="Box-Whisker-Plot (number)" value={1}
+			>Box-Whisker-Plot (#)<sup class="badge variant-filled-primary">{count_number}</sup></Tab
+		>
+		<Tab bind:group={tabsBasic} name="Bar Plot (text)" value={2}
+			>Bar Plot (text)<sup class="badge variant-filled-primary">{count_text}</sup></Tab
+		>
+		<Tab bind:group={tabsBasic} name="Date" value={3}
+			>Date<sup class="badge variant-filled-primary">{count_date}</sup></Tab
+		>
+		<!-- Panel -->
+		<svelte:fragment slot="panel">
+			<div hidden={tabsBasic !== 0} id="scatter" />
+			<div hidden={tabsBasic !== 1} id="boxplot" />
+			<div hidden={tabsBasic !== 2} id="bar_cat" />
+			<div hidden={tabsBasic !== 3}>
+				<p class="pt-2">Sorry, no visualization available.</p>
+			</div>
+		</svelte:fragment>
+	</TabGroup>
 </main>
 
 <style>

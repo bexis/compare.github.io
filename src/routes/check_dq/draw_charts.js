@@ -54,25 +54,41 @@ Chart.register(
  */
 export function completeness_pie(d, pieDiv) {
 	const pieCanvas = document.createElement('canvas');
+	/**
+	 * @type {string[]}
+	 */
+	let labels = ['Data'];
+	/**
+	 * @type {any[]}
+	 */
+	let data = [d.countData];
+	let backgroundColor = ['rgb(50,205,50)'];
+	let hoverBackgroundColor = ['rgba(50,205,50,0.8)'];
+
+	if (d.countMv > 0) {
+		labels.push('Missing Values');
+		data.push(d.countMv);
+		backgroundColor.push('rgb(255,165,0)');
+		hoverBackgroundColor.push('rgba(255,165,0,0.8)');
+	}
+	if (d.countNull > 0) {
+		labels.push('NULL');
+		data.push(d.countNull);
+		backgroundColor.push('rgb(255,0,0)');
+		hoverBackgroundColor.push('rgba(255,0,0,0.8)');
+	}
+
 	new Chart(pieCanvas.getContext('2d'), {
 		type: 'pie',
 		data: {
 			//names of the legends in the pie
-			labels: ['Data', 'Missing Values', 'NULL'],
+			labels: labels,
 			datasets: [
 				{
 					//set the data for the pie
-					data: [d.countData, d.countMv, d.countNull],
-					backgroundColor: [
-						'rgb(50,205,50)', //background color of the data part in the pie
-						'rgb(255,165,0)', //background color of the missing values part in the pie
-						'rgb(255,0,0)' //background color of the empty cells (null) part in the pie
-					],
-					hoverBackgroundColor: [
-						'rgba(50,205,50,0.8)', //background color on hover of the data part in the pie
-						'rgba(255,165,0,0.8)', //background color on hover of the missing values part in the pie
-						'rgba(255,0,0,0.8)' //background color on hover of the empty cells (null) part in the pie
-					]
+					data: data,
+					backgroundColor: backgroundColor,
+					hoverBackgroundColor: hoverBackgroundColor
 				}
 			]
 		},
