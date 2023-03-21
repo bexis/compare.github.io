@@ -194,7 +194,11 @@
 		for (var i = 0; i < cur_dataset_ids.length; i++) {
 			let id = ds_test[cur_dataset_ids[i]]['Id'];
 			let version = cur_version_ids[i];
-			let data = await fetch_metadata(id, version);
+			// @ts-ignore
+			let dsv = ds_test.find(item => item["Id"] === id);
+			// @ts-ignore
+			let version_number = dsv["Versions"].find((/** @type {{ id: any; }} */ item) => item["Id"] === version)
+			let data = await fetch_metadata(id, version_number["Number"]);
 			results.push(data);
 		}
 
