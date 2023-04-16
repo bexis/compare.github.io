@@ -12,6 +12,7 @@
 		bar_cat
 	} from '../check_dq/draw_charts';
 	import { getData } from '../check_dq/fetch_data';
+	import { structured_datasets_date } from '../../store/store';
 
 	let loading = false;
 	$: props = { value: 50, max: 100, step: 10 };
@@ -26,6 +27,14 @@
 		ds_struct = value;
 		console.log(ds_struct);
 	});
+	/**
+	 * @type {string | any[]}
+	 */
+	let ds_struct_date;
+	structured_datasets_date.subscribe((/** @type {string | any[]} */ value) => {
+		console.log(value);
+		ds_struct_date = value;
+	});
 
 	onMount(async () => {
 		structured_datasets.useLocalStorage();
@@ -34,10 +43,7 @@
 		api_version.useLocalStorage();
 
 		if (ds_struct.length == 0) {
-			loading = true;
-			const result = await fetch_datasets($url + endpoint_structured_datasets);
-			structured_datasets.set(result);
-			loading = false;
+			refreshCache();
 		}
 		let headersList = {
 			Accept: 'application/json',
@@ -47,6 +53,16 @@
 		const version = await get_version(headersList, $url.toString());
 		api_version.set(version);
 	});
+
+	async function refreshCache() {
+		loading = true;
+		structured_datasets.set([]);
+		structured_datasets_date.set('');
+		const result = await fetch_datasets($url + endpoint_structured_datasets);
+		structured_datasets.set(result);
+		structured_datasets_date.set(new Date().toDateString());
+		loading = false;
+	}
 
 	let endpoint_data_statistics = '/api/DataStatistic';
 	let endpoint_data_quality = '/api/DataQuality/';
@@ -305,33 +321,42 @@
 
 <main class="p-4">
 	<h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Data Quality</h2>
-	<div>
-		<label class="input-label w-[80%]" for="dq">
-			<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md">
-				<select
-					class="select variant-form-material w-40"
-					id="dq"
-					bind:value={id}
-					disabled={loading}
-				>
-					{#each ds_struct as dataset, i}
-						<option class="bg-surface-500" value={dataset}>{dataset}</option>
-					{/each}
-				</select>
-				<input
-					class="w-96"
-					type="text"
-					id="name"
-					bind:value={id}
-					disabled={loading}
-					on:keypress={onKeyPress}
-				/>
-				<button class="btn bg-primary-500 rounded-md w-96" on:click={showVis} disabled={loading}
-					>Show DQ</button
-				>
-			</div>
-		</label>
+	<div class="flex flex-row">
+		<div>
+			<label class="input-label w-96" for="dq">
+				<div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md">
+					<select
+						class="select variant-form-material w-40"
+						id="dq"
+						bind:value={id}
+						disabled={loading}
+					>
+						{#each ds_struct as dataset, i}
+							<option class="bg-surface-500" value={dataset}>{dataset}</option>
+						{/each}
+					</select>
+					<input
+						class="w-10"
+						type="text"
+						id="name"
+						bind:value={id}
+						disabled={loading}
+						on:keypress={onKeyPress}
+					/>
+
+					<button
+						class="btn bg-primary-500 rounded-md w-50 pl-20"
+						on:click={showVis}
+						disabled={loading}>Show DQ</button
+					>
+				</div>
+			</label>
+		</div>
 	</div>
+		<div>
+			{#if ds_struct_date}<span class="italic">Cache data: {ds_struct_date}. </span><span on:keypress={refreshCache} on:click={refreshCache} title="Refresh cache"><i class="fa-solid fa-rotate"></i></span>{/if}
+		</div>
+
 
 	{#if error == true}
 		<p class="text-red-500 pt-2">An error occurred.</p>

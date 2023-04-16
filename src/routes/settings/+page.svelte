@@ -7,7 +7,8 @@
 		url,
 		datasets_result,
 		api_version,
-		structured_datasets
+		structured_datasets,
+		structured_datasets_date
 	} from '../../store/store.js';
 
 	let url_ = '';
@@ -60,9 +61,12 @@
 	}
 
 	async function setUrl() {
+		logout();
 		url.set(url_);
 		datasets_result.set([]); // unset cached values
 		structured_datasets.set([]);
+		structured_datasets_date.set('');
+
 		const version = await get_version(headersList, $url.toString());
 		api_version.set(version);
 	}

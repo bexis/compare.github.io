@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { localStorageStore } from '@skeletonlabs/skeleton';
 
 const createLocalStore = (/** @type {string} */ key, /** @type {any[] | string } */ startValue) => {
 	const { subscribe, set, update } = writable(startValue);
@@ -28,3 +29,6 @@ export const username = createLocalStore('username', '');
 export const url = createLocalStore('url', '');
 export const api_version = createLocalStore('api_version', '');
 export const storeCurrentUrl = writable();
+
+export const structured_datasets_date = localStorageStore('structured_datasets_date', '');
+export const datasets_result_date = localStorageStore('datasets_result_date', '');

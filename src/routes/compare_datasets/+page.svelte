@@ -1,7 +1,7 @@
 <script>
 	import { diffChars } from 'diff';
 	import { onMount } from 'svelte';
-	import { datasets_result, table_content, url, token, api_version } from '../../store/store';
+	import { datasets_result, datasets_result_date, table_content, url, token, api_version } from '../../store/store';
 	import ShowDiff from '$lib/components/ShowDiff.svelte';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
 	import { createTable, Subscribe, Render, createRender } from 'svelte-headless-table';
@@ -45,10 +45,7 @@
 		api_version.useLocalStorage();
 
 		if (ds_test.length == 0) {
-			loading = true;
-			const result = await fetch_datasets(ds_version_ids_endpoint);
-			datasets_result.set(result);
-			loading = false;
+			update_cache();
 		}
 
 		const version = await get_version(headersList, $url.toString());
@@ -121,6 +118,7 @@
 		loading = true;
 		const result = await fetch_datasets(ds_version_ids_endpoint);
 		datasets_result.set(result);
+		datasets_result_date.set(new Date().toDateString());
 		loading = false;
 	}
 
@@ -195,10 +193,12 @@
 			let id = ds_test[cur_dataset_ids[i]]['Id'];
 			let version = cur_version_ids[i];
 			// @ts-ignore
-			let dsv = ds_test.find(item => item["Id"] === id);
+			let dsv = ds_test.find((item) => item['Id'] === id);
 			// @ts-ignore
-			let version_number = dsv["Versions"].find((/** @type {{ id: any; }} */ item) => item["Id"] === version)
-			let data = await fetch_metadata(id, version_number["Number"]);
+			let version_number = dsv['Versions'].find(
+				(/** @type {{ id: any; }} */ item) => item['Id'] === version
+			);
+			let data = await fetch_metadata(id, version_number['Number']);
 			results.push(data);
 		}
 
@@ -347,18 +347,14 @@
 			<div>
 				<button
 					class=" btn bg-primary-500 rounded-md "
-					on:click={update_cache}
-					disabled={loading}
-					title="Dataset Ids and Versions are cached for performance reasons. Refresh if Ids are missing"
-					>Refresh Cache</button
-				>
-				<button
-					class=" btn bg-primary-500 rounded-md "
 					on:click={add_dataset_id}
 					disabled={loading}
 					title="Add Datasets to compare. 1st dataset is the reference for comparison."
 					>Add Datasets</button
 				>
+				<div>
+					{#if $datasets_result_date}<span class="italic">Cache data: {$datasets_result_date}. </span><span on:keypress={update_cache} on:click={update_cache} title="Refresh cache"><i class="fa-solid fa-rotate"></i></span>{/if}
+				</div>
 			</div>
 		</div>
 

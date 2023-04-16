@@ -16,12 +16,12 @@
 		if (elemTarget) elemTarget.scrollIntoView({ behavior: 'smooth' });
 	}
 
-
 	afterNavigate((params: any) => {
 		// Store current page route URL
 		storeCurrentUrl.set($page.url.pathname);
 		// Scroll to top
-		const isNewPage: boolean = params.from && params.to && params.from.route.id !== params.to.route.id;
+		const isNewPage: boolean =
+			params.from && params.to && params.from.route.id !== params.to.route.id;
 		const elemPage = document.querySelector('#page');
 		if (isNewPage && elemPage !== null) {
 			elemPage.scrollTop = 0;
@@ -29,9 +29,6 @@
 		// Scroll heading into view
 		scrollHeadingIntoView();
 	});
-
-
-
 </script>
 
 <AppShell
