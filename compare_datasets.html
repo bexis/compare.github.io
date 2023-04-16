@@ -6,24 +6,23 @@
 		<meta name="viewport" content="width=device-width" />
 		<script src="https://kit.fontawesome.com/76b174a5e9.js" crossorigin="anonymous"></script>
 		<meta http-equiv="content-security-policy" content="">
-		<link href="./_app/immutable/assets/_layout.c1fc450b.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/ProgressBar.05e4960c.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.14ca1e59.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.eb67d230.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.2c4569df.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.570411b5.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/paths.e986dc13.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.ae4f1200.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/_layout.svelte.6700c277.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang.f622a89c.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/store.b412f34a.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/stores.0aed88e1.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/compare_datasets-page.svelte.ae7ac0b1.js">
+		<link href="./_app/immutable/assets/_layout.953f372b.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/store.05e4960c.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.863df691.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.865c8369.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.04ae1748.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.daf53a58.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/paths.87ebdf98.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.4947bf73.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/_layout.svelte.3350170a.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/stores.e7d0f8f9.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/store.5b6f0a3c.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/compare_datasets-page.svelte.51db9114.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index.es6.e3d92ab8.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressRadial.87facafd.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressRadial.f1491068.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/utils.21f4f64d.js">
 		<link rel="modulepreload" href="./_app/immutable/entry/compare_datasets-page.js.9c5eea7e.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/_page.7c799ff2.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
+		<link rel="modulepreload" href="./_app/immutable/chunks/_page.e94d8ac7.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
   if (localStorage.getItem("storeLightSwitch") === "true" || !("storeLightSwitch" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.classList.add("dark");
   } else {
@@ -137,8 +136,8 @@
 
 	
 	<main class="p-4"><h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Compare Datasets &amp; Versions</h2>
-	<div class="width-max"><div class="grid justify-items-end pr-8"><div><button class="btn bg-primary-500 rounded-md "  title="Dataset Ids and Versions are cached for performance reasons. Refresh if Ids are missing">Refresh Cache</button>
-				<button class="btn bg-primary-500 rounded-md "  title="Add Datasets to compare. 1st dataset is the reference for comparison.">Add Datasets</button></div></div>
+	<div class="width-max"><div class="grid justify-items-end pr-8"><div><button class="btn bg-primary-500 rounded-md "  title="Add Datasets to compare. 1st dataset is the reference for comparison.">Add Datasets</button>
+				<div></div></div></div>
 
 		<p class="pt-8 pb-8">Selection of versions only has an effect starting from version v2.17. Before the latest
 				version is used.
@@ -178,7 +177,7 @@
 			
 			<script>
 				{
-					__sveltekit_n3km0i = {
+					__sveltekit_14bhvqr = {
 						env: {},
 						assets: "/compare.github.io",
 						base: new URL(".", location).pathname.slice(0, -1),
@@ -188,10 +187,10 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.14ca1e59.js"),
-						import("./_app/immutable/entry/app.ae4f1200.js")
+						import("./_app/immutable/entry/start.863df691.js"),
+						import("./_app/immutable/entry/app.4947bf73.js")
 					]).then(([kit, app]) => {
-						kit.start(app, __sveltekit_n3km0i.element, {
+						kit.start(app, __sveltekit_14bhvqr.element, {
 							node_ids: [0, 6],
 							data,
 							form: null,

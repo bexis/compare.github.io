@@ -6,24 +6,23 @@
 		<meta name="viewport" content="width=device-width" />
 		<script src="https://kit.fontawesome.com/76b174a5e9.js" crossorigin="anonymous"></script>
 		<meta http-equiv="content-security-policy" content="">
-		<link href="./_app/immutable/assets/_layout.c1fc450b.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/ProgressBar.05e4960c.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/_layout.953f372b.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/store.05e4960c.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/_page.a675dd15.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.14ca1e59.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.eb67d230.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.2c4569df.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.570411b5.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/paths.e986dc13.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.ae4f1200.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/_layout.svelte.6700c277.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressBar.svelte_svelte_type_style_lang.f622a89c.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/store.b412f34a.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/stores.0aed88e1.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/check_dq-page.svelte.03d0bc9c.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.863df691.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.865c8369.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.04ae1748.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.daf53a58.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/paths.87ebdf98.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.4947bf73.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/_layout.svelte.3350170a.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/stores.e7d0f8f9.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/store.5b6f0a3c.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/check_dq-page.svelte.03040b95.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/utils.21f4f64d.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressRadial.87facafd.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/ProgressRadial.f1491068.js">
 		<link rel="modulepreload" href="./_app/immutable/entry/check_dq-page.js.9c5eea7e.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/_page.da46b06b.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
+		<link rel="modulepreload" href="./_app/immutable/chunks/_page.fca24c55.js"><!-- HEAD_svelte-1b2q2h6_START --><!-- HTML_TAG_START --><script>function setColorScheme() {
   if (localStorage.getItem("storeLightSwitch") === "true" || !("storeLightSwitch" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.classList.add("dark");
   } else {
@@ -137,9 +136,12 @@
 
 	
 	<main class="p-4"><h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Data Quality</h2>
-	<div><label class="input-label w-[80%]" for="dq"><div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md"><select class="select variant-form-material w-40" id="dq" ></select>
-				<input class="w-96" type="text" id="name"  value="31300">
-				<button class="btn bg-primary-500 rounded-md w-96" >Show DQ</button></div></label></div>
+	<div class="flex flex-row"><div><label class="input-label w-96" for="dq"><div class="input-group input-group-divider grid-cols-[auto_1fr_auto] rounded-md"><select class="select variant-form-material w-40" id="dq" ></select>
+					<input class="w-10" type="text" id="name"  value="31300">
+
+					<button class="btn bg-primary-500 rounded-md w-50 pl-20" >Show DQ</button></div></label></div></div>
+		<div></div>
+
 
 	
 	
@@ -217,7 +219,7 @@
 			
 			<script>
 				{
-					__sveltekit_n3km0i = {
+					__sveltekit_14bhvqr = {
 						env: {},
 						assets: "/compare.github.io",
 						base: new URL(".", location).pathname.slice(0, -1),
@@ -227,10 +229,10 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.14ca1e59.js"),
-						import("./_app/immutable/entry/app.ae4f1200.js")
+						import("./_app/immutable/entry/start.863df691.js"),
+						import("./_app/immutable/entry/app.4947bf73.js")
 					]).then(([kit, app]) => {
-						kit.start(app, __sveltekit_n3km0i.element, {
+						kit.start(app, __sveltekit_14bhvqr.element, {
 							node_ids: [0, 4],
 							data,
 							form: null,
