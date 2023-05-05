@@ -517,7 +517,7 @@ export function show_dublicates(d) {
 
 		//set percentage of duplicates
 
-		dupPerc = parseInt(((dupSum / d.countRows) * 100).toFixed(2));
+		dupPerc = parseFloat(((dupSum / d.countRows) * 100).toFixed(20));
 	}
 	return dupPerc;
 }
