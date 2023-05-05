@@ -1,7 +1,14 @@
 <script>
 	import { diffChars } from 'diff';
 	import { onMount } from 'svelte';
-	import { datasets_result, datasets_result_date, table_content, url, token, api_version } from '../../store/store';
+	import {
+		datasets_result,
+		datasets_result_date,
+		table_content,
+		url,
+		token,
+		api_version
+	} from '../../store/store';
 	import ShowDiff from '$lib/components/ShowDiff.svelte';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
 	import { createTable, Subscribe, Render, createRender } from 'svelte-headless-table';
@@ -343,7 +350,7 @@
 <main class="p-4">
 	<h2 class="pt-4 pb-4 text-secondary-700 dark:text-white">Compare Datasets & Versions</h2>
 	<div class="width-max">
-		<div class="grid justify-items-end pr-8">
+		<div class="grid justify-items-start pr-8">
 			<div>
 				<button
 					class=" btn bg-primary-500 rounded-md "
@@ -353,7 +360,11 @@
 					>Add Datasets</button
 				>
 				<div>
-					{#if $datasets_result_date}<span class="italic">Cache data: {$datasets_result_date}. </span><span on:keypress={update_cache} on:click={update_cache} title="Refresh cache"><i class="fa-solid fa-rotate"></i></span>{/if}
+					{#if $datasets_result_date}<span class="italic"
+							>Cache date: {$datasets_result_date}.
+						</span><span on:keypress={update_cache} on:click={update_cache} title="Refresh cache"
+							><i class="fa-solid fa-rotate" /></span
+						>{/if}
 				</div>
 			</div>
 		</div>
@@ -401,7 +412,7 @@
 			{/each}
 		{/if}
 		{#if cur_dataset_ids.length >= 2}
-			<div class="grid justify-items-end pr-8">
+			<div class="pl-80">
 				<button
 					class="btn bg-primary-500 rounded-md"
 					on:click={calc_and_show_diff}
