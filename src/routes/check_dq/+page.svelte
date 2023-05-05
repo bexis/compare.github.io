@@ -214,6 +214,9 @@
 		remove_content('affectedVar');
 		remove_content('bar_cat');
 
+		// reset affected variables to ensure it is always filled new
+		affectedVariablen = [];
+
 		// create charts
 		getDQ(id).then((d) => {
 			statisticAPIdata = d;
@@ -343,20 +346,22 @@
 						disabled={loading}
 						on:keypress={onKeyPress}
 					/>
-
-					<button
-						class="btn bg-primary-500 rounded-md w-50 pl-20"
-						on:click={showVis}
-						disabled={loading}>Show DQ</button
-					>
 				</div>
 			</label>
 		</div>
-	</div>
 		<div>
-			{#if ds_struct_date}<span class="italic">Cache data: {ds_struct_date}. </span><span on:keypress={refreshCache} on:click={refreshCache} title="Refresh cache"><i class="fa-solid fa-rotate"></i></span>{/if}
+			<button class="btn bg-primary-500 rounded-md w-50 pl-20" on:click={showVis} disabled={loading}
+				>Show DQ</button
+			>
 		</div>
-
+	</div>
+	<div>
+		{#if ds_struct_date}<span class="italic">Cache date: {ds_struct_date}. </span><span
+				on:keypress={refreshCache}
+				on:click={refreshCache}
+				title="Refresh cache"><i class="fa-solid fa-rotate" /></span
+			>{/if}
+	</div>
 
 	{#if error == true}
 		<p class="text-red-500 pt-2">An error occurred.</p>
@@ -383,13 +388,13 @@
 	{#if duplicate_percent <= 10 && duplicate_percent > 0}
 		<aside class="alert variant-ghost-warning w-80">
 			<i class="fa-solid fa-circle-exclamation text-2xl" />
-			<h3 class="alert-message">Duplicates: {duplicate_percent}%</h3>
+			<h3 class="alert-message">Duplicates: {duplicate_percent.toFixed(4)}%</h3>
 		</aside>
 	{/if}
 	{#if duplicate_percent > 10}
 		<aside class="alert variant-ghost-error w-80">
 			<i class="fa-solid fa-circle-xmark text-2xl" />
-			<h3 class="alert-message">Duplicates: {duplicate_percent}%</h3>
+			<h3 class="alert-message">Duplicates: {duplicate_percent.toFixed(4)}%</h3>
 		</aside>
 	{/if}
 	<div id="duplicates" />
