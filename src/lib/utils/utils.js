@@ -11,12 +11,16 @@ export async function get_version(headersList, url) {
 	const data = await response.text();
 	let position_216 = data.indexOf('2.16');
 	let position_217 = data.indexOf('2.17');
+	let position_218 = data.indexOf('2.18');
 	console.log(position_216, position_217);
 	if (position_216 != -1) {
 		return '2.16';
 	}
 	if (position_217 != -1) {
 		return '2.17';
+	}
+	if (position_218 != -1) {
+		return '2.18';
 	}
 	return '-1';
 }
