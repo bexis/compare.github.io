@@ -139,7 +139,7 @@
 		if ($api_version == '2.16') {
 			url_metadata_api = endpoint_metadata + '/' + dataset_id;
 		}
-		if ($api_version == '2.17') {
+		if ($api_version == '2.17' || $api_version == '2.18' ) {
 			url_metadata_api = endpoint_metadata + '/' + dataset_id + '/' + version_id;
 		}
 
