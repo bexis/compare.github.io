@@ -22,7 +22,7 @@ export async function get_version(headersList, url) {
 	if (position_218 != -1) {
 		return '2.18';
 	}
-	return '-1';
+	return '2.18';
 }
 
 /**
