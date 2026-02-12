@@ -36,7 +36,8 @@
 		let headersList = {
 			Accept: '*/*',
 			Authorization: 'Basic ' + btoa(username_ + ':' + password_),
-			'content-type': 'application/json'
+			'content-type': 'application/json',
+			// 'Content-Security-Policy-Report-Only': 'default-src https: "unsafe-inline" "unsafe-eval"'
 		};
 
 		let response = await fetch($url + '/api/tokens', {
@@ -48,7 +49,7 @@
 			let data = await response.json();
 			console.log(data);
 
-			token.set(data['token']);
+			token.set(data['Jwt']);
 			username.set(username_);
 		} else {
 			failed = true;

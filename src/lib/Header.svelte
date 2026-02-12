@@ -40,7 +40,7 @@
 	<svelte:fragment>
 		{#if $url != ''}
 			<h3 class="text-center">
-				{$url} v{#if $api_version != '-1'}{$api_version}{:else} not supported version{/if}
+				{$url} <!--v{#if $api_version != '-1'}{$api_version}{:else} not supported version{/if}-->
 			</h3>
 		{:else}
 			<h3 class="text-red-500 text-center">
