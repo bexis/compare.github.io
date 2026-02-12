@@ -1,4 +1,4 @@
-<script>
+F2.1<script>
 	import { diffChars } from 'diff';
 	import { onMount } from 'svelte';
 	import {
@@ -142,7 +142,7 @@
 		if ($api_version == '2.17' ) {
 			url_metadata_api = endpoint_metadata + '/' + dataset_id + '/' + version_id;
 		}
-		if ($api_version == '2.18' ) {
+		else {
 			url_metadata_api = endpoint_metadata + '/' + dataset_id + '/version_number/' + version_id;
 		}
 
