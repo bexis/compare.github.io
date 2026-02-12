@@ -39,7 +39,7 @@
 			'content-type': 'application/json'
 		};
 
-		let response = await fetch($url + '/api/Token', {
+		let response = await fetch($url + '/api/tokens', {
 			method: 'GET',
 			headers: headersList
 		});
