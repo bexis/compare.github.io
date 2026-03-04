@@ -236,11 +236,11 @@
 				boxplotDiv.innerHTML = '';
 			}
 			d.allVariablen.forEach((v) => {
-				const str = '<div id="boxplot_' + v.VariableName + '"></div>';
+				const str = '<div id="boxplot_' + v.variableName + '"></div>';
 				console.log(str);
 				const boxplotDiv_temp = document.getElementById('boxplot');
 				boxplotDiv_temp?.insertAdjacentHTML('beforeend', str);
-				const boxplotDiv = document.getElementById('boxplot_' + v.VariableName);
+				const boxplotDiv = document.getElementById('boxplot_' + v.variableName);
 				boxplot(v, boxplotDiv);
 			});
 
@@ -263,13 +263,13 @@
 		}
 		count_number = 0;
 		d.allVariablen.forEach((v) => {
-			const str = '<div id="scatter_' + v.VariableName + '"></div>';
+			const str = '<div id="scatter_' + v.variableName + '"></div>';
 			console.log(str);
 			const scatterDiv_temp = document.getElementById('scatter');
 			scatterDiv_temp?.insertAdjacentHTML('beforeend', str);
-			const scatterDiv = document.getElementById('scatter_' + v.VariableName);
+			const scatterDiv = document.getElementById('scatter_' + v.variableName);
 			const types = ['String', 'DateTime'];
-			if (!types.includes(v.DataTypeSystemType)) {
+			if (!types.includes(v.dataTypeSystemType)) {
 				show_unique_value_distribution(d, v, scatterDiv);
 				count_number++;
 			}
@@ -287,18 +287,18 @@
 		}
 		count_text = 0;
 		d.allVariablen.forEach((v) => {
-			const str = '<div id="bar_cat_' + v.VariableName + '"></div>';
+			const str = '<div id="bar_cat_' + v.variableName + '"></div>';
 			console.log(str);
 			const barDiv_temp = document.getElementById('bar_cat');
 			barDiv_temp?.insertAdjacentHTML('beforeend', str);
-			const barDiv = document.getElementById('bar_cat_' + v.VariableName);
+			const barDiv = document.getElementById('bar_cat_' + v.variableName);
 
-			if (v.DataTypeSystemType == 'String') {
+			if (v.dataTypeSystemType == 'String') {
 				bar_cat(v, barDiv);
 				count_text++;
 			}
 
-			if (v.DataTypeSystemType == 'DateTime') {
+			if (v.dataTypeSystemType == 'DateTime') {
 				bar_cat(v, barDiv);
 				count_date++;
 			}
