@@ -180,7 +180,7 @@
 
 		//get all duplicates using api call
 		await getData($url + '/' + endpoint_data_quality, id, $token.toString()).then((dt) => {
-			duplicates = dt.DataTable;
+			duplicates = dt.dataTable;
 		});
 		loading = false;
 		//set and return the result for the visualization
