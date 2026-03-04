@@ -187,9 +187,9 @@ export function completeness_bar(d, barDiv) {
 	barData.datasets.push(nullsDataset);
 
 	//set the names of each dataset, this names are variables names
-	d.affectedVariablen.forEach((/** @type {{ [x: string]: any; VariableName: any; }} */ v) => {
+	d.affectedVariablen.forEach((/** @type {{ [x: string]: any; variableName: any; }} */ v) => {
 		// @ts-ignore
-		barData.labels.push(v.VariableName);
+		barData.labels.push(v.variableName);
 		barData.datasets.forEach((d) => {
 			// @ts-ignore
 			if (v[d.label]) {
@@ -227,9 +227,9 @@ export function completeness_bar(d, barDiv) {
 		const th = document.createElement('th');
 		th.innerText = `${d.affectedVariablen.length} of ${d.countColumns} variables are affected`;
 		head.appendChild(th);
-		d.allVariablen.forEach((/** @type {{ VariableName: string; }} */ v) => {
+		d.allVariablen.forEach((/** @type {{ variableName: string; }} */ v) => {
 			const tr = document.createElement('tr');
-			tr.innerText += v.VariableName;
+			tr.innerText += v.variableName;
 			if (d.affectedVariablen.includes(v)) {
 				tr.style.backgroundColor = '#ff000050';
 			}
@@ -354,12 +354,12 @@ export function show_unique_value_distribution(d, v, scatterDiv) {
 	//	d.allVariablen.forEach((v) => {
 	//if the type of the vriable is string, there is no need for the visualizaion
 	const types = ['String', 'DateTime'];
-	if (types.includes(v.DataTypeSystemType)) {
+	if (types.includes(v.dataTypeSystemType)) {
 		return;
 	}
 	//it is not possible to show all variables in one visualization because the range of values can be very different, therefore only one variable needs to be visualized.
 	//this is exaple, you can change it to visualize one variable of the table
-	//if (v.VariableName !== "Nitrat") {
+	//if (v.variableName !== "Nitrat") {
 	//	return;
 	//}
 	//create random color for border color and background color for the dataset
@@ -436,7 +436,7 @@ export function show_unique_value_distribution(d, v, scatterDiv) {
 	console.log(points);
 	// @ts-ignore
 	scatterData.datasets.push({
-		label: v.VariableName + text + add,
+		label: v.variableName + text + add,
 		data: points,
 		borderColor: color,
 		backgroundColor: color + '33', //make the background color brighter of the border color
@@ -491,7 +491,7 @@ export function show_dublicates(d) {
 		tr.appendChild(headcount);
 		d.allVariablen.forEach((v) => {
 			const th = document.createElement('th');
-			th.innerText = v.VariableName;
+			th.innerText = v.variableName;
 			tr.appendChild(th);
 		});
 		tHead.appendChild(tr);
@@ -507,7 +507,7 @@ export function show_dublicates(d) {
 			d.allVariablen.forEach((v) => {
 				const td = document.createElement('td');
 				//get the values of cells bei id of the variable
-				td.innerText = dup['var' + v.VariableId];
+				td.innerText = dup['var' + v.variableId];
 				tr.appendChild(td);
 			});
 			tBody.append(tr);
@@ -539,7 +539,7 @@ export function boxplot(v, boxplotDiv) {
 
 	//if the type of the vriable is string, there is no need for the visualizaion
 	const types = ['String', 'DateTime'];
-	if (types.includes(v.DataTypeSystemType)) {
+	if (types.includes(v.dataTypeSystemType)) {
 		return;
 	}
 
@@ -547,7 +547,7 @@ export function boxplot(v, boxplotDiv) {
 	min = v.min;
 	max = v.max;
 	// @ts-ignore
-	boxplotData.labels.push(v.VariableName);
+	boxplotData.labels.push(v.variableName);
 	/**
 	 * @type {any[]}
 	 */
@@ -573,7 +573,7 @@ export function boxplot(v, boxplotDiv) {
 	console.log('boxplot', data, boxplotDiv);
 	// @ts-ignore
 	boxplotData.datasets.push({
-		label: v.VariableName,
+		label: v.variableName,
 		data: [data],
 		borderColor: 'rgb(54, 162, 235)', //border color of the dataset
 		backgroundColor: 'rgb(54, 162, 235, 02)', //background color of the dataset
@@ -624,12 +624,12 @@ export function bar_cat(v, barDiv) {
 
 	//if the type of the vriable is string, there is no need for the visualizaion
 	const types = ['String'];
-	if (!types.includes(v.DataTypeSystemType)) {
+	if (!types.includes(v.dataTypeSystemType)) {
 		return;
 	}
 
 	// @ts-ignore
-	//boxplotData.labels.push(v.VariableName);
+	//boxplotData.labels.push(v.variableName);
 	/**
 	 * @type {any[]}
 	 */
@@ -673,7 +673,7 @@ export function bar_cat(v, barDiv) {
 	barData.labels = label;
 	// @ts-ignore
 	barData.datasets.push({
-		label: v.VariableName + ' (max 20 with most counts)',
+		label: v.variableName + ' (max 20 with most counts)',
 		data: data,
 		borderColor: 'rgb(54, 162, 235)', //border color of the dataset
 		backgroundColor: 'rgb(54, 162, 235, 02)', //background color of the dataset
